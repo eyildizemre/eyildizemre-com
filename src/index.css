@@ -39,3 +39,32 @@ body {
   min-height: 100vh;
   transition: background 0.4s, color 0.4s;
 }
+
+/* Tailwind preflight resets form element fonts — restore inheritance */
+button, input, select, textarea {
+  font-family: inherit;
+}
+
+/* Reset link decoration globally */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* === Tema Renk Utility Class'ları ===
+   Tailwind v3'ün CSS variable renklerini rgb() içine sarması sorununu
+   @layer utilities ile atlıyoruz — class'lar doğrudan var() kullanır.
+*/
+@layer utilities {
+  .text-c-neon     { color: var(--color-neon); }
+  .text-c-muted    { color: var(--color-text-muted); }
+  .text-c-text     { color: var(--color-text); }
+
+  .bg-c-bg         { background-color: var(--color-bg); }
+  .bg-c-surface    { background-color: var(--color-surface); }
+  .bg-c-neon       { background-color: var(--color-neon); }
+  .bg-c-overlay    { background-color: var(--color-overlay); }
+
+  .border-c-border { border-color: var(--color-border); }
+  .border-c-neon   { border-color: var(--color-neon); }
+}

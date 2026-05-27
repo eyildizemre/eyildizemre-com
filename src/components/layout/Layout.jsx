@@ -9,7 +9,7 @@ export default function Layout() {
     
     return (
         <div className="min-h-screen">
-            <Header onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
+            <Header onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} isSidebarOpen={isSidebarOpen} />
 
             {isSidebarOpen && (
                 <div
