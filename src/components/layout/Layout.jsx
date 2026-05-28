@@ -8,7 +8,7 @@ export default function Layout() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen flex flex-col">
             <Header onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} isSidebarOpen={isSidebarOpen} />
 
             {isSidebarOpen && (
@@ -21,7 +21,7 @@ export default function Layout() {
 
             <Sidebar isSidebarOpen={isSidebarOpen} onClose={() => setIsSidebarOpen(false)} />
 
-            <main>
+            <main className="flex-1">
                 <Outlet />
             </main>
 
