@@ -3,22 +3,22 @@ import { NavLink } from "react-router-dom";
 import { usePreferences } from "../../context/PreferencesContext";
 
 const SIDEBAR_ITEMS = [
-    { key: "edebiyat",       label: "EDEBİYAT",       children: ["öykü", "şiir"] },
-    { key: "dinlediklerim",  label: "DİNLEDİKLERİM",  children: [] },
-    { key: "izlediklerim",   label: "İZLEDİKLERİM",   children: [] },
-    { key: "video oyunları", label: "VİDEO OYUNLARI",  children: [] },
-    { key: "teknik yazılar", label: "TEKNİK YAZILAR",  children: [] },
-    { key: "blog",           label: "BLOG",            children: [] },
+    { key: "edebiyat",       tr: "EDEBİYAT",       en: "LITERATURE",   children: [{ tr: "öykü", en: "short story" }, { tr: "şiir", en: "poetry" }] },
+    { key: "dinlediklerim",  tr: "DİNLEDİKLERİM",  en: "LISTENING",    children: [] },
+    { key: "izlediklerim",   tr: "İZLEDİKLERİM",   en: "WATCHING",     children: [] },
+    { key: "video oyunları", tr: "VİDEO OYUNLARI",  en: "VIDEO GAMES",  children: [] },
+    { key: "teknik yazılar", tr: "TEKNİK YAZILAR",  en: "TECH WRITING", children: [] },
+    { key: "blog",           tr: "BLOG",            en: "BLOG",         children: [] },
 ];
 
 const NAV_LABELS = {
-    tr: { works: "projeler", code: "kod", about: "hakkımda" },
-    en: { works: "works",    code: "code", about: "about"   },
+    tr: { works: "projeler", code: "kod", about: "hakkımda", menu: "menü" },
+    en: { works: "works",    code: "code", about: "about",   menu: "menu" },
 };
 
 export function Sidebar({ isSidebarOpen, onClose }) {
     const [expanded, setExpanded] = useState(null);
-    const { lang } = usePreferences();
+    const { lang, setLang } = usePreferences();
     const nav = NAV_LABELS[lang] ?? NAV_LABELS.en;
 
     useEffect(() => {
@@ -47,7 +47,7 @@ export function Sidebar({ isSidebarOpen, onClose }) {
                 <span className="text-[18px] tracking-[0.04em] text-c-text">
                     e<span className="text-c-neon">y</span>
                 </span>
-                <span className="text-[11px] tracking-[0.14em] uppercase text-c-muted opacity-60">menü</span>
+                <span className="text-[11px] tracking-[0.14em] uppercase text-c-muted opacity-60">{nav.menu}</span>
             </div>
 
             <nav aria-label="Mobil navigasyon" className="md:hidden border-b border-c-border px-7 py-3 flex flex-col">
@@ -67,7 +67,7 @@ export function Sidebar({ isSidebarOpen, onClose }) {
                                     : "text-c-muted border-transparent hover:text-c-neon"
                             }`}
                         >
-                            <span>{item.label}</span>
+                            <span>{item[lang] ?? item.en}</span>
                             {item.children.length > 0 && (
                                 <span className={`text-[9px] opacity-40 transition-transform duration-[200ms] inline-block ${
                                     expanded === item.key ? "rotate-90" : ""
@@ -78,8 +78,8 @@ export function Sidebar({ isSidebarOpen, onClose }) {
                         {item.children.length > 0 && expanded === item.key && (
                             <div className="pl-11 pb-1.5">
                                 {item.children.map((child) => (
-                                    <div key={child} className="text-[12px] tracking-[0.04em] text-c-muted py-1 opacity-70 hover:opacity-100 transition-opacity duration-[200ms] cursor-pointer">
-                                        {child}
+                                    <div key={child.tr} className="text-[12px] tracking-[0.04em] text-c-muted py-1 opacity-70 hover:opacity-100 transition-opacity duration-[200ms] cursor-pointer">
+                                        {child[lang] ?? child.en}
                                     </div>
                                 ))}
                             </div>
@@ -87,6 +87,22 @@ export function Sidebar({ isSidebarOpen, onClose }) {
                     </div>
                 ))}
             </nav>
+
+            <div className="flex items-center gap-1 px-7 py-5 border-t border-c-border">
+                {["tr", "en"].map((l) => (
+                    <button
+                        key={l}
+                        onClick={() => setLang(l)}
+                        className={`text-[11px] tracking-[0.12em] uppercase px-2 py-1 rounded transition-colors duration-[200ms] ${
+                            lang === l
+                                ? "text-c-neon border border-c-neon"
+                                : "text-c-muted border border-transparent hover:text-c-neon"
+                        }`}
+                    >
+                        {l}
+                    </button>
+                ))}
+            </div>
         </aside>
     );
 }
