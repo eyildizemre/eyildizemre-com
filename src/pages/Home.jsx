@@ -2,6 +2,7 @@ import { works } from "../data/works";
 import { usePreferences } from "../context/PreferencesContext";
 import { BilancoAccordion } from "../components/home/BilancoAccordion";
 import SuSiralar from "../components/home/SuSiralar";
+import CommitHeatmap from "../components/home/CommitHeatmap";
 
 const LABELS = {
     tr: { total: "proje", completed: "tamamlanmış", active: "yapılmakta", currentProjects: "güncel projeler" },
@@ -105,6 +106,7 @@ export default function Home() {
             </section>
 
             {/* Commit Heatmap */}
+            <CommitHeatmap />
         </>
     );
 }
