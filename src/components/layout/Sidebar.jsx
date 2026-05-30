@@ -35,7 +35,7 @@ export function Sidebar({ isSidebarOpen, onClose }) {
                 <span className="text-f-lg tracking-[0.04em] text-c-text">
                     e<span className="text-c-neon">y</span>
                 </span>
-                <span className="text-f-xs tracking-[0.14em] uppercase text-c-muted opacity-60">{ui.sidebar.menu}</span>
+                <span className="text-f-xs tracking-[0.14em] uppercase text-c-muted">{ui.sidebar.menu}</span>
             </div>
 
             <nav aria-label={ui.aria.mobileNav} className="md:hidden border-b border-c-border px-7 py-3 flex flex-col">
@@ -57,7 +57,7 @@ export function Sidebar({ isSidebarOpen, onClose }) {
                         >
                             <span>{item[lang] ?? item.en}</span>
                             {item.children.length > 0 && (
-                                <span className={`text-[9px] opacity-40 transition-transform duration-[200ms] inline-block ${
+                                <span className={`text-[9px] transition-transform duration-[200ms] inline-block ${
                                     expanded === item.key ? "rotate-90" : ""
                                 }`}>▶</span>
                             )}
@@ -66,7 +66,7 @@ export function Sidebar({ isSidebarOpen, onClose }) {
                         {item.children.length > 0 && expanded === item.key && (
                             <div className="pl-11 pb-1.5">
                                 {item.children.map((child) => (
-                                    <div key={child.tr} className="text-f-sm tracking-[0.04em] text-c-muted py-1 opacity-70 hover:opacity-100 transition-opacity duration-[200ms] cursor-pointer">
+                                    <div key={child.tr} className="text-f-sm tracking-[0.04em] text-c-muted py-1 hover:text-c-text transition-colors duration-[200ms] cursor-pointer">
                                         {child[lang] ?? child.en}
                                     </div>
                                 ))}
