@@ -1,3 +1,5 @@
+import { usePreferences } from "../context/PreferencesContext";
+
 export const UI = {
     tr: {
         nav: { works: "projeler", code: "kod", about: "hakkımda" },
@@ -38,3 +40,8 @@ export const UI = {
         },
     },
 };
+
+export function useUI() {
+    const { lang } = usePreferences();
+    return UI[lang] ?? UI.en;
+}

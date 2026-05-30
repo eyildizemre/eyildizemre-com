@@ -1,6 +1,6 @@
 import { NavLink, Link } from "react-router-dom";
 import { usePreferences } from "../../context/PreferencesContext";
-import { UI } from "../../i18n/ui";
+import { useUI } from "../../i18n/ui";
 
 function PanelIcon() {
     return (
@@ -13,8 +13,8 @@ function PanelIcon() {
 }
 
 export function Header({ onToggleSidebar, isSidebarOpen }) {
-    const { theme, setTheme, lang } = usePreferences();
-    const ui = UI[lang] ?? UI.en;
+    const { theme, setTheme } = usePreferences();
+    const ui = useUI();
 
     const navLinkClass = ({ isActive }) =>
         `text-f-base tracking-[0.12em] uppercase transition-colors duration-[220ms] pb-1 border-b ${

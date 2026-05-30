@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { usePreferences } from "../../context/PreferencesContext";
-import { UI } from "../../i18n/ui";
+import { useUI } from "../../i18n/ui";
 import sidebarItems from "../../data/sidebarItems.json";
 
 export function Sidebar({ isSidebarOpen, onClose }) {
     const [expanded, setExpanded] = useState(null);
     const { lang, setLang, fontSize, setFontSize } = usePreferences();
-    const ui = UI[lang] ?? UI.en;
+    const ui = useUI();
 
     useEffect(() => {
         if (!isSidebarOpen) return;

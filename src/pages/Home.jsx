@@ -1,13 +1,11 @@
 import { works } from "../data/works";
-import { usePreferences } from "../context/PreferencesContext";
-import { UI } from "../i18n/ui";
+import { useUI } from "../i18n/ui";
 import { BilancoAccordion } from "../components/home/BilancoAccordion";
 import SuSiralar from "../components/home/SuSiralar";
 import CommitHeatmap from "../components/home/CommitHeatmap";
 
 export default function Home() {
-    const { lang } = usePreferences();
-    const ui = UI[lang] ?? UI.en;
+    const ui = useUI();
 
     const total     = works.length;
     const completed = works.filter(w => w.status === "completed").length;
