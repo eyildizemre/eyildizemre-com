@@ -24,6 +24,9 @@ export const UI = {
             mobileNav: "Mobil navigasyon",
             discoverMenu: "Keşif menüsü",
         },
+        works: {
+            viewMore: "devamını görüntüle"
+        },
     },
     en: {
         nav: { works: "works", code: "code", about: "about" },
@@ -47,7 +50,10 @@ export const UI = {
             sidebar: "Sidebar",
             mobileNav: "Mobile navigation",
             discoverMenu: "Discovery menu",
-        }
+        },
+        works: {
+            viewMore: "view more",
+        },
     },
 };
 
