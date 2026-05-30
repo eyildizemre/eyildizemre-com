@@ -26,26 +26,26 @@ export default function Home() {
 
                     {/* şu sıralar */}
                     <div>
-                        <p className="text-[11px] tracking-[0.14em] text-c-muted mb-6 opacity-60">şu sıralar...</p>
+                        <p className="text-f-xs tracking-[0.14em] text-c-muted mb-6 opacity-60">şu sıralar...</p>
                         <SuSiralar />
                     </div>
 
                     {/* Bilanço */}
                     <div>
-                        <p className="text-[11px] tracking-[0.14em] text-c-muted mb-6 opacity-60">BILANÇO</p>
+                        <p className="text-f-xs tracking-[0.14em] text-c-muted mb-6 opacity-60">BILANÇO</p>
                         <BilancoAccordion />
                     </div>
 
                     {/* Current Projects */}
                     <div>
-                        <p className="text-[11px] tracking-[0.14em] text-c-muted mb-6 opacity-60 uppercase">{labels.currentProjects}</p>
+                        <p className="text-f-xs tracking-[0.14em] text-c-muted mb-6 opacity-60 uppercase">{labels.currentProjects}</p>
                         <div className="divide-y divide-c-border border-t border-c-border">
                             {current.map((work) => (
                                 <div key={work.slug} className="flex items-start justify-between gap-4 py-4">
                                     <div>
-                                        <p className="text-[13px] tracking-[0.04em] text-c-text">{work.title}</p>
-                                        <p className="text-[11px] tracking-[0.02em] text-c-muted mt-1 leading-relaxed">{work.description}</p>
-                                        <p className="text-[10px] tracking-[0.06em] text-c-muted mt-2 opacity-50">
+                                        <p className="text-f-base tracking-[0.04em] text-c-text">{work.title}</p>
+                                        <p className="text-f-xs tracking-[0.02em] text-c-muted mt-1 leading-relaxed">{work.description}</p>
+                                        <p className="text-f-2xs tracking-[0.06em] text-c-muted mt-2 opacity-50">
                                             {work.tags.join(" · ")}
                                         </p>
                                     </div>
@@ -53,7 +53,7 @@ export default function Home() {
                                         href={work.links.github}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="shrink-0 text-[11px] tracking-[0.1em] text-c-muted border border-c-border rounded px-2.5 py-1 hover:text-c-neon hover:border-c-neon transition-colors duration-[220ms]"
+                                        className="shrink-0 text-f-xs tracking-[0.1em] text-c-muted border border-c-border rounded px-2.5 py-1 hover:text-c-neon hover:border-c-neon transition-colors duration-[220ms]"
                                     >
                                         GitHub
                                     </a>
@@ -67,7 +67,7 @@ export default function Home() {
 
             {/* Hero */}
             <section className="px-8 sm:px-16 pt-24 pb-20">
-                <p className="text-[11px] tracking-[0.2em] text-c-muted mb-5">
+                <p className="text-f-xs tracking-[0.2em] text-c-muted mb-5">
                     SOFTWARE ENGINEER
                 </p>
                 <h1 className="text-[52px] sm:text-[72px] leading-none tracking-[-0.02em] text-c-text font-serif">
@@ -82,7 +82,7 @@ export default function Home() {
                         <p className="text-[40px] sm:text-[48px] leading-none tracking-[-0.02em] text-c-neon tabular-nums">
                             {total}
                         </p>
-                        <p className="text-[11px] tracking-[0.1em] uppercase text-c-muted mt-2">
+                        <p className="text-f-xs tracking-[0.1em] uppercase text-c-muted mt-2">
                             {labels.total}
                         </p>
                     </div>
@@ -90,7 +90,7 @@ export default function Home() {
                         <p className="text-[40px] sm:text-[48px] leading-none tracking-[-0.02em] text-c-neon tabular-nums">
                             {completed}
                         </p>
-                        <p className="text-[11px] tracking-[0.1em] uppercase text-c-muted mt-2">
+                        <p className="text-f-xs tracking-[0.1em] uppercase text-c-muted mt-2">
                             {labels.completed}
                         </p>
                     </div>
@@ -98,7 +98,7 @@ export default function Home() {
                         <p className="text-[40px] sm:text-[48px] leading-none tracking-[-0.02em] text-c-neon tabular-nums">
                             {active}
                         </p>
-                        <p className="text-[11px] tracking-[0.1em] uppercase text-c-muted mt-2">
+                        <p className="text-f-xs tracking-[0.1em] uppercase text-c-muted mt-2">
                             {labels.active}
                         </p>
                     </div>

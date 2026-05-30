@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* === Font Sistemi === */
+:root {
+  --f-base: 1rem;                          /* = kullanıcının 16px'i, sabit sayı değil */
+  --f-2xs: calc(var(--f-base) * 0.75);     /* 12px */
+  --f-xs:  calc(var(--f-base) * 0.8125);   /* 13px */
+  --f-sm:  calc(var(--f-base) * 0.875);    /* 14px */
+  --f-lg:  calc(var(--f-base) * 1.375);    /* 22px */
+}
+
+[data-font-size="sm"] { --f-base: 0.8125rem; }  /* 13px */
+[data-font-size="lg"] { --f-base: 1.25rem; }     /* 20px */
+
 /* === Tema Değişkenleri === */
 [data-theme="dark"] {
   --color-bg: #0d0d0f;
@@ -56,6 +68,12 @@ a {
    @layer utilities ile atlıyoruz — class'lar doğrudan var() kullanır.
 */
 @layer utilities {
+  .text-f-2xs  { font-size: var(--f-2xs); }
+  .text-f-xs   { font-size: var(--f-xs); }
+  .text-f-sm   { font-size: var(--f-sm); }
+  .text-f-base { font-size: var(--f-base); }
+  .text-f-lg   { font-size: var(--f-lg); }
+
   .text-c-neon     { color: var(--color-neon); }
   .text-c-muted    { color: var(--color-text-muted); }
   .text-c-text     { color: var(--color-text); }

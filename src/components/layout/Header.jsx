@@ -21,7 +21,7 @@ export function Header({ onToggleSidebar, isSidebarOpen }) {
     const nav = NAV_LABELS[lang] ?? NAV_LABELS.en;
 
     const navLinkClass = ({ isActive }) =>
-        `text-[13px] tracking-[0.12em] uppercase transition-colors duration-[220ms] pb-1 border-b ${
+        `text-f-base tracking-[0.12em] uppercase transition-colors duration-[220ms] pb-1 border-b ${
             isActive
                 ? "text-c-neon border-c-neon"
                 : "text-c-muted border-transparent hover:text-c-neon"
@@ -30,7 +30,7 @@ export function Header({ onToggleSidebar, isSidebarOpen }) {
     return (
         <header className="relative flex items-center justify-between h-16 pl-10 pr-8 bg-c-surface border-b border-c-border">
 
-            <Link to="/" className="text-[18px] tracking-[0.04em] text-c-text">
+            <Link to="/" className="text-f-lg tracking-[0.04em] text-c-text">
                 e<span className="text-c-neon">y</span>
             </Link>
 
@@ -43,7 +43,7 @@ export function Header({ onToggleSidebar, isSidebarOpen }) {
             <div className="flex items-center gap-3">
                 <button
                     onClick={() => setTheme(theme === "dark" ? "sepia" : "dark")}
-                    className="hidden sm:block text-[13px] tracking-[0.08em] text-c-muted border border-c-border rounded px-3 py-1.5 bg-transparent font-serif hover:text-c-neon hover:border-c-neon transition-colors duration-[220ms]"
+                    className="hidden sm:block text-f-base tracking-[0.08em] text-c-muted border border-c-border rounded px-3 py-1.5 bg-transparent font-serif hover:text-c-neon hover:border-c-neon transition-colors duration-[220ms]"
                 >
                     {theme === "dark" ? nav.toSepia : nav.toDark}
                 </button>

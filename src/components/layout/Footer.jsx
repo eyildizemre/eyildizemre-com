@@ -25,7 +25,7 @@ export function Footer() {
 
     return (
         <footer className="flex items-center justify-between px-6 sm:px-10 py-8 mt-16 border-t border-c-border">
-            <span className="text-[12px] tracking-[0.08em] text-c-text">
+            <span className="text-f-sm tracking-[0.08em] text-c-text">
                 e<span className="text-c-neon">y</span>
             </span>
 
@@ -48,7 +48,7 @@ export function Footer() {
                 >
                     <LinkedInIcon />
                 </a>
-                <span className="text-[11px] tracking-[0.1em] text-c-neon">© {year}</span>
+                <span className="text-f-xs tracking-[0.1em] text-c-neon">© {year}</span>
             </div>
         </footer>
     );

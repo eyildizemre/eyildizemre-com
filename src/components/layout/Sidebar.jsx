@@ -29,7 +29,7 @@ export function Sidebar({ isSidebarOpen, onClose }) {
     }, [isSidebarOpen, onClose]);
 
     const mobileNavClass = ({ isActive }) =>
-        `text-[12px] tracking-[0.12em] uppercase py-2 pl-3 border-l-2 transition-colors duration-[220ms] ${
+        `text-f-sm tracking-[0.12em] uppercase py-2 pl-3 border-l-2 transition-colors duration-[220ms] ${
             isActive
                 ? "text-c-neon border-c-neon"
                 : "text-c-muted border-transparent hover:text-c-neon"
@@ -44,10 +44,10 @@ export function Sidebar({ isSidebarOpen, onClose }) {
             }`}
         >
             <div className="flex items-center justify-between px-7 py-5 border-b border-c-border">
-                <span className="text-[18px] tracking-[0.04em] text-c-text">
+                <span className="text-f-lg tracking-[0.04em] text-c-text">
                     e<span className="text-c-neon">y</span>
                 </span>
-                <span className="text-[11px] tracking-[0.14em] uppercase text-c-muted opacity-60">{nav.menu}</span>
+                <span className="text-f-xs tracking-[0.14em] uppercase text-c-muted opacity-60">{nav.menu}</span>
             </div>
 
             <nav aria-label="Mobil navigasyon" className="md:hidden border-b border-c-border px-7 py-3 flex flex-col">
@@ -61,7 +61,7 @@ export function Sidebar({ isSidebarOpen, onClose }) {
                     <div key={item.key}>
                         <button
                             onClick={() => setExpanded(expanded === item.key ? null : item.key)}
-                            className={`w-full flex items-center justify-between px-7 py-[9px] text-[12px] tracking-[0.1em] transition-colors duration-[200ms] border-l-2 ${
+                            className={`w-full flex items-center justify-between px-7 py-[9px] text-f-sm tracking-[0.1em] transition-colors duration-[200ms] border-l-2 ${
                                 expanded === item.key
                                     ? "text-c-neon border-c-neon"
                                     : "text-c-muted border-transparent hover:text-c-neon"
@@ -78,7 +78,7 @@ export function Sidebar({ isSidebarOpen, onClose }) {
                         {item.children.length > 0 && expanded === item.key && (
                             <div className="pl-11 pb-1.5">
                                 {item.children.map((child) => (
-                                    <div key={child.tr} className="text-[12px] tracking-[0.04em] text-c-muted py-1 opacity-70 hover:opacity-100 transition-opacity duration-[200ms] cursor-pointer">
+                                    <div key={child.tr} className="text-f-sm tracking-[0.04em] text-c-muted py-1 opacity-70 hover:opacity-100 transition-opacity duration-[200ms] cursor-pointer">
                                         {child[lang] ?? child.en}
                                     </div>
                                 ))}
@@ -93,7 +93,7 @@ export function Sidebar({ isSidebarOpen, onClose }) {
                     <button
                         key={l}
                         onClick={() => setLang(l)}
-                        className={`text-[11px] tracking-[0.12em] uppercase px-2 py-1 rounded transition-colors duration-[200ms] ${
+                        className={`text-f-xs tracking-[0.12em] uppercase px-2 py-1 rounded transition-colors duration-[200ms] ${
                             lang === l
                                 ? "text-c-neon border border-c-neon"
                                 : "text-c-muted border border-transparent hover:text-c-neon"

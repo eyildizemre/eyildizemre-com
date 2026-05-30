@@ -94,9 +94,9 @@ export default function CommitHeatmap() {
 
     return (
         <section className="px-8 sm:px-16 py-14 border-t border-c-border">
-            <p className="text-[11px] tracking-[0.14em] text-c-muted mb-6 opacity-60">COMMIT ACTIVITY</p>
+            <p className="text-f-xs tracking-[0.14em] text-c-muted mb-6 opacity-60">COMMIT ACTIVITY</p>
             <div className="w-fit border border-c-border rounded-lg p-5">
-                <p className="text-[12px] tracking-[0.02em] text-c-muted mb-4">
+                <p className="text-f-sm tracking-[0.02em] text-c-muted mb-4">
                     {loading ? "..." : contributionLabel}
                 </p>
             <div className="flex gap-[3px]">
