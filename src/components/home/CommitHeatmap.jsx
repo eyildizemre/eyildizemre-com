@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { usePreferences } from "../../context/PreferencesContext";
-import { UI } from "../../i18n/ui";
+import { useUI } from "../../i18n/ui";
 
 export default function CommitHeatmap() {
     const [weeks, setWeeks]     = useState([]);
@@ -8,7 +8,7 @@ export default function CommitHeatmap() {
     const [loading, setLoading] = useState(true);
     const [error, setError]     = useState(null);
     const { lang } = usePreferences();
-    const ui = UI[lang] ?? UI.en;
+    const ui = useUI();
 
     useEffect(() => {
         async function fetchData() {
