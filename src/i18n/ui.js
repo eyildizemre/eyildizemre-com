@@ -19,6 +19,11 @@ export const UI = {
             tooltipNone: (date) => `${date} tarihinde katkı yok`,
             tooltipSome: (date, n) => `${date} tarihinde ${n} katkı`,
         },
+        aria: {
+            sidebar: "Kenar menüsü",
+            mobileNav: "Mobil navigasyon",
+            discoverMenu: "Keşif menüsü",
+        },
     },
     en: {
         nav: { works: "works", code: "code", about: "about" },
@@ -38,6 +43,11 @@ export const UI = {
             tooltipNone: (date) => `No contributions on ${date}`,
             tooltipSome: (date, n) => `${n} contribution${n !== 1 ? "s" : ""} on ${date}`,
         },
+        aria: {
+            sidebar: "Sidebar",
+            mobileNav: "Mobile navigation",
+            discoverMenu: "Discovery menu",
+        }
     },
 };
 

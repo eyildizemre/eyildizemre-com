@@ -25,7 +25,7 @@ export function Sidebar({ isSidebarOpen, onClose }) {
 
     return (
         <aside
-            aria-label="Kenar menüsü"
+            aria-label={ui.aria.sidebar}
             aria-hidden={!isSidebarOpen}
             className={`fixed top-0 right-0 h-full w-[270px] bg-c-bg-secondary border-l border-c-border z-20 flex flex-col transition-transform duration-[320ms] ease-[cubic-bezier(0.4,0,0.2,1)] ${
                 isSidebarOpen ? "translate-x-0" : "translate-x-full"
@@ -38,13 +38,13 @@ export function Sidebar({ isSidebarOpen, onClose }) {
                 <span className="text-f-xs tracking-[0.14em] uppercase text-c-muted opacity-60">{ui.sidebar.menu}</span>
             </div>
 
-            <nav aria-label="Mobil navigasyon" className="md:hidden border-b border-c-border px-7 py-3 flex flex-col">
+            <nav aria-label={ui.aria.mobileNav} className="md:hidden border-b border-c-border px-7 py-3 flex flex-col">
                 <NavLink to="/works" onClick={onClose} className={mobileNavClass}>{ui.nav.works}</NavLink>
                 <NavLink to="/code"  onClick={onClose} className={mobileNavClass}>{ui.nav.code}</NavLink>
                 <NavLink to="/about" onClick={onClose} className={mobileNavClass}>{ui.nav.about}</NavLink>
             </nav>
 
-            <nav aria-label="Keşif menüsü" className="flex-1 py-4 overflow-y-auto">
+            <nav aria-label={ui.aria.discoverMenu} className="flex-1 py-4 overflow-y-auto">
                 {sidebarItems.map((item) => (
                     <div key={item.key}>
                         <button
