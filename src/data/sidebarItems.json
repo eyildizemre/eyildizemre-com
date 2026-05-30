@@ -1,0 +1,8 @@
+[
+    { "key": "edebiyat",       "tr": "EDEBİYAT",      "en": "LITERATURE",   "children": [{ "tr": "öykü", "en": "short story" }, { "tr": "şiir", "en": "poetry" }] },
+    { "key": "dinlediklerim",  "tr": "DİNLEDİKLERİM", "en": "LISTENING",    "children": [] },
+    { "key": "izlediklerim",   "tr": "İZLEDİKLERİM",  "en": "WATCHING",     "children": [] },
+    { "key": "video oyunları", "tr": "VİDEO OYUNLARI", "en": "VIDEO GAMES",  "children": [] },
+    { "key": "teknik yazılar", "tr": "TEKNİK YAZILAR", "en": "TECH WRITING", "children": [] },
+    { "key": "blog",           "tr": "BLOG",           "en": "BLOG",         "children": [] }
+]

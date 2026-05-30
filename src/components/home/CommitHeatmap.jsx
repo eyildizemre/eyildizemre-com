@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { usePreferences } from "../../context/PreferencesContext";
+import { UI } from "../../i18n/ui";
 
 export default function CommitHeatmap() {
     const [weeks, setWeeks]     = useState([]);
@@ -7,6 +8,7 @@ export default function CommitHeatmap() {
     const [loading, setLoading] = useState(true);
     const [error, setError]     = useState(null);
     const { lang } = usePreferences();
+    const ui = UI[lang] ?? UI.en;
 
     useEffect(() => {
         async function fetchData() {
@@ -58,14 +60,9 @@ export default function CommitHeatmap() {
 
     function tooltip(count, date) {
         const formatted = new Date(date).toLocaleDateString(locale, dateOptions);
-        if (lang === "tr") {
-            return count === 0
-                ? `${formatted} tarihinde katkı yok`
-                : `${formatted} tarihinde ${count} katkı`;
-        }
         return count === 0
-            ? `No contributions on ${formatted}`
-            : `${count} contribution${count !== 1 ? "s" : ""} on ${formatted}`;
+            ? ui.heatmap.tooltipNone(formatted)
+            : ui.heatmap.tooltipSome(formatted, count);
     }
 
     function dotOpacity(count) {
@@ -88,23 +85,16 @@ export default function CommitHeatmap() {
         return "";
     }
 
-    const contributionLabel = lang === "tr"
-        ? `Son bir yılda ${total} katkı`
-        : `${total} contributions in the last year`;
-
     return (
         <section className="px-8 sm:px-16 py-14 border-t border-c-border">
             <p className="text-f-xs tracking-[0.14em] text-c-muted mb-6 opacity-60">COMMIT ACTIVITY</p>
             <div className="w-fit border border-c-border rounded-lg p-5">
                 <p className="text-f-sm tracking-[0.02em] text-c-muted mb-4">
-                    {loading ? "..." : contributionLabel}
+                    {loading ? "..." : ui.heatmap.total(total)}
                 </p>
             <div className="flex gap-[3px]">
                 <div className="flex flex-col gap-[3px] mr-1 mt-[14px]">
-                    {(lang === "tr"
-                        ? ["", "Pzt", "", "Çar", "", "Cum", ""]
-                        : ["", "Mon", "", "Wed", "", "Fri", ""]
-                    ).map((label, i) => (
+                    {ui.heatmap.days.map((label, i) => (
                         <div key={i} className="h-[10px] flex items-center">
                             <span className="text-[8px] text-c-muted opacity-50 w-[18px] leading-none">{label}</span>
                         </div>
@@ -150,11 +140,11 @@ export default function CommitHeatmap() {
                 </div>
             </div>
                 <div className="flex items-center justify-end gap-[6px] mt-3">
-                    <span className="text-[8px] text-c-muted opacity-50">{lang === "tr" ? "Az" : "Less"}</span>
+                    <span className="text-[8px] text-c-muted opacity-50">{ui.heatmap.less}</span>
                     {[0.1, 0.3, 0.6, 0.8, 1].map((op) => (
                         <div key={op} className="w-[10px] h-[10px] rounded-sm bg-c-neon" style={{ opacity: op }} />
                     ))}
-                    <span className="text-[8px] text-c-muted opacity-50">{lang === "tr" ? "Çok" : "More"}</span>
+                    <span className="text-[8px] text-c-muted opacity-50">{ui.heatmap.more}</span>
                 </div>
             </div>
         </section>
