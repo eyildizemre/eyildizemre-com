@@ -87,7 +87,7 @@ export default function CommitHeatmap() {
 
     return (
         <section className="px-8 sm:px-16 py-14 border-t border-c-border">
-            <p className="text-f-xs tracking-[0.14em] text-c-muted mb-6 opacity-60">COMMIT ACTIVITY</p>
+            <p className="text-f-xs tracking-[0.14em] text-c-muted mb-6">COMMIT ACTIVITY</p>
             <div className="w-fit border border-c-border rounded-lg p-5">
                 <p className="text-f-sm tracking-[0.02em] text-c-muted mb-4">
                     {loading ? "..." : ui.heatmap.total(total)}
@@ -96,7 +96,7 @@ export default function CommitHeatmap() {
                 <div className="flex flex-col gap-[3px] mr-1 mt-[14px]">
                     {ui.heatmap.days.map((label, i) => (
                         <div key={i} className="h-[10px] flex items-center">
-                            <span className="text-[8px] text-c-muted opacity-50 w-[18px] leading-none">{label}</span>
+                            <span className="text-[8px] text-c-muted w-[18px] leading-none">{label}</span>
                         </div>
                     ))}
                 </div>
@@ -108,7 +108,7 @@ export default function CommitHeatmap() {
                         ))
                         : weeks.map((_, wi) => (
                             <div key={wi} className="w-[10px]">
-                                <span className="text-[8px] text-c-muted opacity-50 leading-none whitespace-nowrap">
+                                <span className="text-[8px] text-c-muted leading-none whitespace-nowrap">
                                     {monthLabel(wi)}
                                 </span>
                             </div>
@@ -140,11 +140,11 @@ export default function CommitHeatmap() {
                 </div>
             </div>
                 <div className="flex items-center justify-end gap-[6px] mt-3">
-                    <span className="text-[8px] text-c-muted opacity-50">{ui.heatmap.less}</span>
+                    <span className="text-[8px] text-c-muted">{ui.heatmap.less}</span>
                     {[0.1, 0.3, 0.6, 0.8, 1].map((op) => (
                         <div key={op} className="w-[10px] h-[10px] rounded-sm bg-c-neon" style={{ opacity: op }} />
                     ))}
-                    <span className="text-[8px] text-c-muted opacity-50">{ui.heatmap.more}</span>
+                    <span className="text-[8px] text-c-muted">{ui.heatmap.more}</span>
                 </div>
             </div>
         </section>

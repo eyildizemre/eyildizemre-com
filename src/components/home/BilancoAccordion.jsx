@@ -15,7 +15,7 @@ export function BilancoAccordion() {
                         <span className="text-f-base tracking-[0.06em] text-c-muted group-hover:text-c-text transition-colors duration-[220ms]">
                             {item.year}
                         </span>
-                        <span className="text-f-xs tracking-[0.1em] text-c-muted opacity-50 group-hover:opacity-100 transition-opacity duration-[220ms]">
+                        <span className="text-f-xs tracking-[0.1em] text-c-muted group-hover:text-c-text transition-colors duration-[220ms]">
                             {expanded === item.year ? "−" : "+"}
                         </span>
                     </button>
