@@ -18,7 +18,7 @@ const NAV_LABELS = {
 
 export function Sidebar({ isSidebarOpen, onClose }) {
     const [expanded, setExpanded] = useState(null);
-    const { lang, setLang } = usePreferences();
+    const { lang, setLang, fontSize, setFontSize } = usePreferences();
     const nav = NAV_LABELS[lang] ?? NAV_LABELS.en;
 
     useEffect(() => {
@@ -100,6 +100,22 @@ export function Sidebar({ isSidebarOpen, onClose }) {
                         }`}
                     >
                         {l}
+                    </button>
+                ))}
+
+                <div className="w-px h-4 bg-c-border mx-2" />
+
+                {[["sm", "A−"], ["md", "A"], ["lg", "A+"]].map(([val, label]) => (
+                    <button
+                        key={val}
+                        onClick={() => setFontSize(val)}
+                        className={`text-f-xs tracking-[0.06em] px-2 py-1 rounded transition-colors duration-[200ms] ${
+                            fontSize === val
+                                ? "text-c-neon border border-c-neon"
+                                : "text-c-muted border border-transparent hover:text-c-neon"
+                        }`}
+                    >
+                        {label}
                     </button>
                 ))}
             </div>
