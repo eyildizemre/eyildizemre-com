@@ -1,17 +1,13 @@
 import { works } from "../data/works";
 import { usePreferences } from "../context/PreferencesContext";
+import { UI } from "../i18n/ui";
 import { BilancoAccordion } from "../components/home/BilancoAccordion";
 import SuSiralar from "../components/home/SuSiralar";
 import CommitHeatmap from "../components/home/CommitHeatmap";
 
-const LABELS = {
-    tr: { total: "proje", completed: "tamamlanmış", active: "yapılmakta", currentProjects: "güncel projeler" },
-    en: { total: "projects", completed: "completed", active: "in progress", currentProjects: "current projects" },
-};
-
 export default function Home() {
     const { lang } = usePreferences();
-    const labels = LABELS[lang] ?? LABELS.en;
+    const ui = UI[lang] ?? UI.en;
 
     const total     = works.length;
     const completed = works.filter(w => w.status === "completed").length;
@@ -38,7 +34,7 @@ export default function Home() {
 
                     {/* Current Projects */}
                     <div>
-                        <p className="text-f-xs tracking-[0.14em] text-c-muted mb-6 opacity-60 uppercase">{labels.currentProjects}</p>
+                        <p className="text-f-xs tracking-[0.14em] text-c-muted mb-6 opacity-60 uppercase">{ui.home.currentProjects}</p>
                         <div className="divide-y divide-c-border border-t border-c-border">
                             {current.map((work) => (
                                 <div key={work.slug} className="flex items-start justify-between gap-4 py-4">
@@ -83,7 +79,7 @@ export default function Home() {
                             {total}
                         </p>
                         <p className="text-f-xs tracking-[0.1em] uppercase text-c-muted mt-2">
-                            {labels.total}
+                            {ui.home.total}
                         </p>
                     </div>
                     <div>
@@ -91,7 +87,7 @@ export default function Home() {
                             {completed}
                         </p>
                         <p className="text-f-xs tracking-[0.1em] uppercase text-c-muted mt-2">
-                            {labels.completed}
+                            {ui.home.completed}
                         </p>
                     </div>
                     <div>
@@ -99,7 +95,7 @@ export default function Home() {
                             {active}
                         </p>
                         <p className="text-f-xs tracking-[0.1em] uppercase text-c-muted mt-2">
-                            {labels.active}
+                            {ui.home.active}
                         </p>
                     </div>
                 </div>

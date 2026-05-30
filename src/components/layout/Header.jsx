@@ -1,10 +1,6 @@
 import { NavLink, Link } from "react-router-dom";
 import { usePreferences } from "../../context/PreferencesContext";
-
-const NAV_LABELS = {
-    tr: { works: "projeler", code: "kod", about: "hakkımda", toSepia: "◐ sepya", toDark: "◑ koyu" },
-    en: { works: "works",    code: "code", about: "about",    toSepia: "◐ sepia", toDark: "◑ dark"   },
-};
+import { UI } from "../../i18n/ui";
 
 function PanelIcon() {
     return (
@@ -18,7 +14,7 @@ function PanelIcon() {
 
 export function Header({ onToggleSidebar, isSidebarOpen }) {
     const { theme, setTheme, lang } = usePreferences();
-    const nav = NAV_LABELS[lang] ?? NAV_LABELS.en;
+    const ui = UI[lang] ?? UI.en;
 
     const navLinkClass = ({ isActive }) =>
         `text-f-base tracking-[0.12em] uppercase transition-colors duration-[220ms] pb-1 border-b ${
@@ -35,9 +31,9 @@ export function Header({ onToggleSidebar, isSidebarOpen }) {
             </Link>
 
             <nav className="hidden md:flex items-center gap-8">
-                <NavLink to="/works" className={navLinkClass}>{nav.works}</NavLink>
-                <NavLink to="/code" className={navLinkClass}>{nav.code}</NavLink>
-                <NavLink to="/about" className={navLinkClass}>{nav.about}</NavLink>
+                <NavLink to="/works" className={navLinkClass}>{ui.nav.works}</NavLink>
+                <NavLink to="/code" className={navLinkClass}>{ui.nav.code}</NavLink>
+                <NavLink to="/about" className={navLinkClass}>{ui.nav.about}</NavLink>
             </nav>
 
             <div className="flex items-center gap-3">
@@ -45,7 +41,7 @@ export function Header({ onToggleSidebar, isSidebarOpen }) {
                     onClick={() => setTheme(theme === "dark" ? "sepia" : "dark")}
                     className="hidden sm:block text-f-base tracking-[0.08em] text-c-muted border border-c-border rounded px-3 py-1.5 bg-transparent font-serif hover:text-c-neon hover:border-c-neon transition-colors duration-[220ms]"
                 >
-                    {theme === "dark" ? nav.toSepia : nav.toDark}
+                    {theme === "dark" ? ui.theme.toSepia : ui.theme.toDark}
                 </button>
 
                 <button

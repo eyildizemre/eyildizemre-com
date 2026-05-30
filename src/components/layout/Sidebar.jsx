@@ -1,25 +1,13 @@
 import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { usePreferences } from "../../context/PreferencesContext";
-
-const SIDEBAR_ITEMS = [
-    { key: "edebiyat",       tr: "EDEBİYAT",       en: "LITERATURE",   children: [{ tr: "öykü", en: "short story" }, { tr: "şiir", en: "poetry" }] },
-    { key: "dinlediklerim",  tr: "DİNLEDİKLERİM",  en: "LISTENING",    children: [] },
-    { key: "izlediklerim",   tr: "İZLEDİKLERİM",   en: "WATCHING",     children: [] },
-    { key: "video oyunları", tr: "VİDEO OYUNLARI",  en: "VIDEO GAMES",  children: [] },
-    { key: "teknik yazılar", tr: "TEKNİK YAZILAR",  en: "TECH WRITING", children: [] },
-    { key: "blog",           tr: "BLOG",            en: "BLOG",         children: [] },
-];
-
-const NAV_LABELS = {
-    tr: { works: "projeler", code: "kod", about: "hakkımda", menu: "menü" },
-    en: { works: "works",    code: "code", about: "about",   menu: "menu" },
-};
+import { UI } from "../../i18n/ui";
+import sidebarItems from "../../data/sidebarItems.json";
 
 export function Sidebar({ isSidebarOpen, onClose }) {
     const [expanded, setExpanded] = useState(null);
     const { lang, setLang, fontSize, setFontSize } = usePreferences();
-    const nav = NAV_LABELS[lang] ?? NAV_LABELS.en;
+    const ui = UI[lang] ?? UI.en;
 
     useEffect(() => {
         if (!isSidebarOpen) return;
@@ -47,17 +35,17 @@ export function Sidebar({ isSidebarOpen, onClose }) {
                 <span className="text-f-lg tracking-[0.04em] text-c-text">
                     e<span className="text-c-neon">y</span>
                 </span>
-                <span className="text-f-xs tracking-[0.14em] uppercase text-c-muted opacity-60">{nav.menu}</span>
+                <span className="text-f-xs tracking-[0.14em] uppercase text-c-muted opacity-60">{ui.sidebar.menu}</span>
             </div>
 
             <nav aria-label="Mobil navigasyon" className="md:hidden border-b border-c-border px-7 py-3 flex flex-col">
-                <NavLink to="/works" onClick={onClose} className={mobileNavClass}>{nav.works}</NavLink>
-                <NavLink to="/code"  onClick={onClose} className={mobileNavClass}>{nav.code}</NavLink>
-                <NavLink to="/about" onClick={onClose} className={mobileNavClass}>{nav.about}</NavLink>
+                <NavLink to="/works" onClick={onClose} className={mobileNavClass}>{ui.nav.works}</NavLink>
+                <NavLink to="/code"  onClick={onClose} className={mobileNavClass}>{ui.nav.code}</NavLink>
+                <NavLink to="/about" onClick={onClose} className={mobileNavClass}>{ui.nav.about}</NavLink>
             </nav>
 
             <nav aria-label="Keşif menüsü" className="flex-1 py-4 overflow-y-auto">
-                {SIDEBAR_ITEMS.map((item) => (
+                {sidebarItems.map((item) => (
                     <div key={item.key}>
                         <button
                             onClick={() => setExpanded(expanded === item.key ? null : item.key)}
