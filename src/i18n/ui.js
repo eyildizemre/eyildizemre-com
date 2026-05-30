@@ -25,7 +25,11 @@ export const UI = {
             discoverMenu: "Keşif menüsü",
         },
         works: {
-            viewMore: "devamını görüntüle"
+            viewMore: "devamını görüntüle",
+        },
+        code: {
+            details: "Detaylar",
+            fallback: "Güncel repo bilgileri çekilemedi, jeneratör devreye alınıyor...",
         },
     },
     en: {
@@ -53,6 +57,10 @@ export const UI = {
         },
         works: {
             viewMore: "view more",
+        },
+        code: {
+            details: "Details",
+            fallback: "Failed to fetch repo information, falling back to generator...",
         },
     },
 };
