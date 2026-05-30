@@ -88,36 +88,20 @@ export function Sidebar({ isSidebarOpen, onClose }) {
                 ))}
             </nav>
 
-            <div className="flex items-center gap-1 px-7 py-5 border-t border-c-border">
-                {["tr", "en"].map((l) => (
-                    <button
-                        key={l}
-                        onClick={() => setLang(l)}
-                        className={`text-f-xs tracking-[0.12em] uppercase px-2 py-1 rounded transition-colors duration-[200ms] ${
-                            lang === l
-                                ? "text-c-neon border border-c-neon"
-                                : "text-c-muted border border-transparent hover:text-c-neon"
-                        }`}
-                    >
-                        {l}
-                    </button>
-                ))}
+            <div className="flex items-center justify-center gap-3 py-5 border-t border-c-border">
+                <button
+                    onClick={() => setLang(lang === "tr" ? "en" : "tr")}
+                    className="text-f-xs tracking-[0.12em] uppercase px-2 py-1 rounded border border-c-border text-c-muted hover:text-c-neon hover:border-c-neon transition-colors duration-[200ms]"
+                >
+                    {lang === "tr" ? "en" : "tr"}
+                </button>
 
-                <div className="w-px h-4 bg-c-border mx-2" />
-
-                {[["sm", "A−"], ["md", "A"], ["lg", "A+"]].map(([val, label]) => (
-                    <button
-                        key={val}
-                        onClick={() => setFontSize(val)}
-                        className={`text-f-xs tracking-[0.06em] px-2 py-1 rounded transition-colors duration-[200ms] ${
-                            fontSize === val
-                                ? "text-c-neon border border-c-neon"
-                                : "text-c-muted border border-transparent hover:text-c-neon"
-                        }`}
-                    >
-                        {label}
-                    </button>
-                ))}
+                <button
+                    onClick={() => setFontSize(fontSize === "md" ? "lg" : "md")}
+                    className="text-f-xs tracking-[0.06em] px-2 py-1 rounded border border-c-border text-c-muted hover:text-c-neon hover:border-c-neon transition-colors duration-[200ms]"
+                >
+                    {fontSize === "md" ? "A+" : "A"}
+                </button>
             </div>
         </aside>
     );

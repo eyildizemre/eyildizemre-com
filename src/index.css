@@ -11,8 +11,7 @@
   --f-lg:  calc(var(--f-base) * 1.375);    /* 22px */
 }
 
-[data-font-size="sm"] { --f-base: 0.8125rem; }  /* 13px */
-[data-font-size="lg"] { --f-base: 1.25rem; }     /* 20px */
+[data-font-size="lg"] { --f-base: 1.25rem; }  /* 20px */
 
 /* === Tema Değişkenleri === */
 [data-theme="dark"] {
