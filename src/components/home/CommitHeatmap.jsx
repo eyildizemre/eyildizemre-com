@@ -88,7 +88,7 @@ export default function CommitHeatmap() {
     return (
         <section className="px-8 sm:px-16 py-14 border-t border-c-border">
             <p className="text-f-xs tracking-[0.14em] text-c-muted mb-6">COMMIT ACTIVITY</p>
-            <div className="w-fit border border-c-border rounded-lg p-5">
+            <div className="w-fit max-w-full border border-c-border rounded-lg p-5">
                 <p className="text-f-sm tracking-[0.02em] text-c-muted mb-4">
                     {loading ? "..." : ui.heatmap.total(total)}
                 </p>
@@ -100,7 +100,7 @@ export default function CommitHeatmap() {
                         </div>
                     ))}
                 </div>
-                <div className="flex flex-col gap-[2px]">
+                <div className="flex flex-col gap-[2px] min-w-0 overflow-x-auto">
                 <div className="flex gap-[3px] mb-[2px]">
                     {loading
                         ? Array.from({ length: 53 }).map((_, i) => (
@@ -115,7 +115,7 @@ export default function CommitHeatmap() {
                         ))
                     }
                 </div>
-            <div className="flex gap-[3px] overflow-x-auto py-[2px]">
+            <div className="flex gap-[3px] py-[2px]">
                 {loading
                     ? Array.from({ length: 53 }).map((_, wi) => (
                         <div key={wi} className="flex flex-col gap-[3px]">
