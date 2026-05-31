@@ -34,6 +34,19 @@ export const UI = {
         codedetail: {
             placeholder: "GitHub'dan veri çekilemiyor. Doğrudan GitHub'da görüntüleyebilirsiniz.",
         },
+        about: {
+            contact: {
+                heading: "İletişim",
+                name: "Ad",
+                email: "E-posta",
+                message: "Mesaj",
+                send: "Gönder",
+                success: "Teşekkürler — bu bir demo, mesaj aslında gönderilmedi.",
+                required: "Bu alan zorunlu",
+                invalidEmail: "Geçerli bir e-posta gir",
+                demoNote: "Demo: form yalnızca doğrulama yapar, mesaj göndermez.",
+            },
+        },
     },
     en: {
         nav: { works: "works", code: "code", about: "about" },
@@ -67,6 +80,19 @@ export const UI = {
         },
         codedetail: {
             placeholder: "Can't fetch data from GitHub. You can view it in GitHub.",
+        },
+        about: {
+            contact: {
+                heading: "Contact",
+                name: "Name",
+                email: "Email",
+                message: "Message",
+                send: "Send",
+                success: "Thanks — this is a demo, the message wasn't actually sent.",
+                required: "This field is required",
+                invalidEmail: "Enter a valid email",
+                demoNote: "Demo: the form only validates; it doesn't send.",
+            },
         },
     },
 };
