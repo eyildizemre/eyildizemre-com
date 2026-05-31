@@ -27,9 +27,34 @@ export default function CodeDetail() {
 
     return (
         <section className="px-8 sm:px-16 pt-16 pb-20">
-            <Suspense fallback={<p className="text-c-muted">...</p>}>
-                <Markdown>{readme ?? ""}</Markdown>
-            </Suspense>
+            <div className="max-w-2xl mx-auto">
+                {/* başlık: repo adı + GitHub linki */}
+                <div className="flex items-baseline justify-between gap-4 mb-8">
+                    <h1 className="text-[40px] sm:text-[48px] leading-none tracking-[-0.02em] text-c-text font-serif">
+                        {slug}
+                    </h1>
+                    <a
+                        href={`https://github.com/${OWNER}/${slug}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="shrink-0 text-f-xs tracking-[0.08em] text-c-muted hover:text-c-neon transition-colors duration-[220ms]"
+                    >
+                        GitHub ↗
+                    </a>
+                </div>
+
+                {/* etiketli çerçeve — editör dosya-paneli gibi */}
+                <div className="border border-c-border rounded-lg overflow-hidden">
+                    <div className="flex items-center border-b border-c-border bg-c-bg-secondary px-5 py-2.5">
+                        <span className="font-mono text-f-2xs tracking-[0.06em] text-c-muted">README.md</span>
+                    </div>
+                    <div className="px-6 py-7 sm:px-8">
+                        <Suspense fallback={<p className="text-c-muted">...</p>}>
+                            <Markdown>{readme ?? ""}</Markdown>
+                        </Suspense>
+                    </div>
+                </div>
+            </div>
         </section>
     );
 }
