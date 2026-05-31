@@ -2,7 +2,8 @@ import { useState } from "react";
 import bilanco from "../../data/bilanco.json";
 
 export function BilancoAccordion() {
-    const [expanded, setExpanded] = useState(null);
+    const year = new Date().getFullYear();
+    const [expanded, setExpanded] = useState(year);
 
     return (
         <div className="w-11/12 divide-y divide-c-border border-t border-c-border">
