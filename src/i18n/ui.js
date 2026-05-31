@@ -12,6 +12,7 @@ export const UI = {
             currentProjects: "güncel projeler",
         },
         heatmap: {
+            title: "COMMIT ETKİNLİĞİ",
             days: ["", "Pzt", "", "Çar", "", "Cum", ""],
             less: "Az",
             more: "Çok",
@@ -59,6 +60,7 @@ export const UI = {
             currentProjects: "current projects",
         },
         heatmap: {
+            title: "COMMIT ACTIVITY",
             days: ["", "Mon", "", "Wed", "", "Fri", ""],
             less: "Less",
             more: "More",
