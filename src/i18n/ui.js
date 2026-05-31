@@ -31,6 +31,9 @@ export const UI = {
             details: "Detaylar",
             fallback: "Güncel repo bilgileri çekilemedi, jeneratör devreye alınıyor...",
         },
+        codedetail: {
+            placeholder: "GitHub'dan veri çekilemiyor. Doğrudan GitHub'da görüntüleyebilirsiniz.",
+        },
     },
     en: {
         nav: { works: "works", code: "code", about: "about" },
@@ -61,6 +64,9 @@ export const UI = {
         code: {
             details: "Details",
             fallback: "Failed to fetch repo information, falling back to generator...",
+        },
+        codedetail: {
+            placeholder: "Can't fetch data from GitHub. You can view it in GitHub.",
         },
     },
 };
