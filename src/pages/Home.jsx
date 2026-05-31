@@ -60,7 +60,7 @@ export default function Home() {
             </section>
 
             {/* Hero */}
-            <section className="px-8 sm:px-16 pt-24 pb-20">
+            <section className="px-8 sm:px-16 pt-24 pb-20 border-t border-c-border">
                 <p className="text-f-xs tracking-[0.2em] text-c-muted mb-5">
                     SOFTWARE ENGINEER
                 </p>
