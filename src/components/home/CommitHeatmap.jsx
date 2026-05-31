@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { usePreferences } from "../../context/PreferencesContext";
 import { useUI } from "../../i18n/ui";
 
@@ -7,6 +7,7 @@ export default function CommitHeatmap() {
     const [total, setTotal]     = useState(0);
     const [loading, setLoading] = useState(true);
     const [error, setError]     = useState(null);
+    const scrollRef = useRef(null);
     const { lang } = usePreferences();
     const ui = useUI();
 
@@ -52,6 +53,12 @@ export default function CommitHeatmap() {
         }
         fetchData();
     }, []);
+
+    useLayoutEffect(() => {
+        if (scrollRef.current) {
+            scrollRef.current.scrollLeft = scrollRef.current.scrollWidth; // scroll to end on load to show most recent activity
+        }
+    }, [weeks]); // scroll to end when weeks data changes
 
     if (error) return null;
 
@@ -100,7 +107,7 @@ export default function CommitHeatmap() {
                         </div>
                     ))}
                 </div>
-                <div className="flex flex-col gap-[2px] min-w-0 overflow-x-auto">
+                <div ref={scrollRef} className="flex flex-col gap-[2px] min-w-0 overflow-x-auto">
                 <div className="flex gap-[3px] mb-[2px]">
                     {loading
                         ? Array.from({ length: 53 }).map((_, i) => (
