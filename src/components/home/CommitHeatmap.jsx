@@ -14,38 +14,10 @@ export default function CommitHeatmap() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const res = await fetch("https://api.github.com/graphql", {
-                    method: "POST",
-                    headers: {
-                        "Authorization": `bearer ${import.meta.env.VITE_GITHUB_TOKEN}`,
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        query: `
-                            query($username: String!) {
-                                user(login: $username) {
-                                    contributionsCollection {
-                                        contributionCalendar {
-                                            totalContributions
-                                            weeks {
-                                                contributionDays {
-                                                    contributionCount
-                                                    date
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        `,
-                        variables: { username: "eyildizemre" },
-                    }),
-                });
-
-                const json = await res.json();
-                const calendar = json.data.user.contributionsCollection.contributionCalendar;
-                setWeeks(calendar.weeks);
-                setTotal(calendar.totalContributions);
+                const res = await fetch("/api/contributions");
+                const { total, weeks } = await res.json();
+                setWeeks(weeks);
+                setTotal(total);
                 setLoading(false);
             } catch (err) {
                 setError(err.message);
