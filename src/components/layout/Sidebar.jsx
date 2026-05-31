@@ -17,11 +17,13 @@ export function Sidebar({ isSidebarOpen, onClose }) {
     }, [isSidebarOpen, onClose]);
 
     const mobileNavClass = ({ isActive }) =>
-        `text-f-sm tracking-[0.12em] uppercase py-2 pl-3 border-l-2 transition-colors duration-[220ms] ${
+        `block px-7 py-[9px] text-f-sm tracking-[0.1em] uppercase border-l-2 transition-colors duration-[220ms] ${
             isActive
                 ? "text-c-neon border-c-neon"
                 : "text-c-muted border-transparent hover:text-c-neon"
         }`;
+
+    const pageNavClass = (props) => `${mobileNavClass(props)} md:hidden`;
 
     return (
         <aside
@@ -38,10 +40,11 @@ export function Sidebar({ isSidebarOpen, onClose }) {
                 <span className="text-f-xs tracking-[0.14em] uppercase text-c-muted">{ui.sidebar.menu}</span>
             </div>
 
-            <nav aria-label={ui.aria.mobileNav} className="md:hidden border-b border-c-border px-7 py-3 flex flex-col">
-                <NavLink to="/works" onClick={onClose} className={mobileNavClass}>{ui.nav.works}</NavLink>
-                <NavLink to="/code"  onClick={onClose} className={mobileNavClass}>{ui.nav.code}</NavLink>
-                <NavLink to="/about" onClick={onClose} className={mobileNavClass}>{ui.nav.about}</NavLink>
+            <nav aria-label={ui.aria.mobileNav} className="border-b border-c-border py-2 flex flex-col">
+                <NavLink to="/" end onClick={onClose} className={mobileNavClass}>{ui.nav.home}</NavLink>
+                <NavLink to="/works" onClick={onClose} className={pageNavClass}>{ui.nav.works}</NavLink>
+                <NavLink to="/code"  onClick={onClose} className={pageNavClass}>{ui.nav.code}</NavLink>
+                <NavLink to="/about" onClick={onClose} className={pageNavClass}>{ui.nav.about}</NavLink>
             </nav>
 
             <nav aria-label={ui.aria.discoverMenu} className="flex-1 py-4 overflow-y-auto">

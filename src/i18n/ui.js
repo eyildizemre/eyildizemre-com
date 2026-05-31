@@ -2,7 +2,7 @@ import { usePreferences } from "../context/PreferencesContext";
 
 export const UI = {
     tr: {
-        nav: { works: "projeler", code: "kod", about: "hakkımda" },
+        nav: { home: "ana sayfa", works: "projeler", code: "kod", about: "hakkımda" },
         theme: { toSepia: "◐ sepya", toDark: "◑ koyu" },
         sidebar: { menu: "menü" },
         home: {
@@ -50,7 +50,7 @@ export const UI = {
         },
     },
     en: {
-        nav: { works: "works", code: "code", about: "about" },
+        nav: { home: "home", works: "works", code: "code", about: "about" },
         theme: { toSepia: "◐ sepia", toDark: "◑ dark" },
         sidebar: { menu: "menu" },
         home: {
