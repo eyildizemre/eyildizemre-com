@@ -3,6 +3,7 @@ import { useUI } from "../i18n/ui";
 import { BilancoAccordion } from "../components/home/BilancoAccordion";
 import SuSiralar from "../components/home/SuSiralar";
 import CommitHeatmap from "../components/home/CommitHeatmap";
+import Collapsible from "../components/home/Collapsible";
 
 export default function Home() {
     const ui = useUI();
@@ -18,17 +19,15 @@ export default function Home() {
             <section className="px-8 sm:px-16 py-10 border-t border-c-border">
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8 items-start">
 
-                    {/* şu sıralar */}
-                    <div>
-                        <p className="text-f-xs tracking-[0.14em] text-c-muted mb-6">şu sıralar...</p>
+                    {/* "şu sıralar" — collapsible on mobile (default closed) */}
+                    <Collapsible title="şu sıralar...">
                         <SuSiralar />
-                    </div>
+                    </Collapsible>
 
-                    {/* Bilanço */}
-                    <div>
-                        <p className="text-f-xs tracking-[0.14em] text-c-muted mb-6">BILANÇO</p>
+                    {/* Bilanço — collapsible on mobile (default closed) */}
+                    <Collapsible title="BİLANÇO">
                         <BilancoAccordion />
-                    </div>
+                    </Collapsible>
 
                     {/* Current Projects */}
                     <div>
