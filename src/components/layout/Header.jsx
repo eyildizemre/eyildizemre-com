@@ -39,7 +39,7 @@ export function Header({ onToggleSidebar, isSidebarOpen }) {
             <div className="flex items-center gap-3">
                 <button
                     onClick={() => setTheme(theme === "dark" ? "sepia" : "dark")}
-                    className="hidden sm:block text-f-base tracking-[0.08em] text-c-muted border border-c-border rounded px-3 py-1.5 bg-transparent font-serif hover:text-c-neon hover:border-c-neon transition-colors duration-[220ms]"
+                    className="hidden sm:block text-f-sm tracking-[0.08em] text-c-muted border border-c-border rounded px-2.5 py-1.5 bg-transparent font-serif hover:text-c-neon hover:border-c-neon transition-colors duration-[220ms]"
                 >
                     {theme === "dark" ? ui.theme.toSepia : ui.theme.toDark}
                 </button>
