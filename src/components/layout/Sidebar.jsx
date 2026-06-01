@@ -48,35 +48,44 @@ export function Sidebar({ isSidebarOpen, onClose }) {
             </nav>
 
             <nav aria-label={ui.aria.discoverMenu} className="flex-1 py-4 overflow-y-auto">
-                {sidebarItems.map((item) => (
-                    <div key={item.key}>
-                        <button
-                            onClick={() => setExpanded(expanded === item.key ? null : item.key)}
-                            className={`w-full flex items-center justify-between px-7 py-[9px] text-f-sm tracking-[0.1em] transition-colors duration-[200ms] border-l-2 ${
-                                expanded === item.key
-                                    ? "text-c-neon border-c-neon"
-                                    : "text-c-muted border-transparent hover:text-c-neon"
-                            }`}
-                        >
-                            <span>{item[lang] ?? item.en}</span>
-                            {item.children.length > 0 && (
-                                <span className={`text-[9px] transition-transform duration-[200ms] inline-block ${
-                                    expanded === item.key ? "rotate-90" : ""
-                                }`}>▶</span>
+                {sidebarItems.map((item) => {
+                    const hasChildren = item.children.length > 0;
+                    return (
+                        <div key={item.key}>
+                            {hasChildren ? (
+                                <button
+                                    onClick={() => setExpanded(expanded === item.key ? null : item.key)}
+                                    className={`w-full flex items-center justify-between px-7 py-[9px] text-f-sm tracking-[0.1em] transition-colors duration-[200ms] border-l-2 ${
+                                        expanded === item.key
+                                            ? "text-c-neon border-c-neon"
+                                            : "text-c-muted border-transparent hover:text-c-neon"
+                                    }`}
+                                >
+                                    <span>{item[lang] ?? item.en}</span>
+                                    <span className={`text-[9px] transition-transform duration-[200ms] inline-block ${
+                                        expanded === item.key ? "rotate-90" : ""
+                                    }`}>▶</span>
+                                </button>
+                            ) : (
+                                <div className="w-full flex items-center justify-between px-7 py-[9px] text-f-sm tracking-[0.1em] text-c-muted border-l-2 border-transparent">
+                                    <span>{item[lang] ?? item.en}</span>
+                                    <span className="shrink-0 text-f-2xs tracking-[0.08em] text-c-muted">{ui.sidebar.soon}</span>
+                                </div>
                             )}
-                        </button>
 
-                        {item.children.length > 0 && expanded === item.key && (
-                            <div className="pl-11 pb-1.5">
-                                {item.children.map((child) => (
-                                    <div key={child.tr} className="text-f-sm tracking-[0.04em] text-c-muted py-1 hover:text-c-text transition-colors duration-[200ms] cursor-pointer">
-                                        {child[lang] ?? child.en}
-                                    </div>
-                                ))}
-                            </div>
-                        )}
-                    </div>
-                ))}
+                            {hasChildren && expanded === item.key && (
+                                <div className="pl-11 pr-7 pb-1.5">
+                                    {item.children.map((child) => (
+                                        <div key={child.tr} className="flex items-center justify-between gap-3 py-1 text-f-sm tracking-[0.04em] text-c-muted">
+                                            <span>{child[lang] ?? child.en}</span>
+                                            <span className="shrink-0 text-f-2xs tracking-[0.08em] text-c-muted">{ui.sidebar.soon}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            )}
+                        </div>
+                    );
+                })}
             </nav>
 
             <div className="flex items-center justify-center gap-3 py-5 border-t border-c-border">

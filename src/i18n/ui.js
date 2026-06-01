@@ -4,7 +4,7 @@ export const UI = {
     tr: {
         nav: { home: "ana sayfa", works: "projeler", code: "kod", about: "hakkımda" },
         theme: { toSepia: "◐ sepya", toDark: "◑ koyu" },
-        sidebar: { menu: "menü" },
+        sidebar: { menu: "menü", soon: "yakında" },
         home: {
             total: "proje",
             completed: "tamamlanmış",
@@ -52,7 +52,7 @@ export const UI = {
     en: {
         nav: { home: "home", works: "works", code: "code", about: "about" },
         theme: { toSepia: "◐ sepia", toDark: "◑ dark" },
-        sidebar: { menu: "menu" },
+        sidebar: { menu: "menu", soon: "soon" },
         home: {
             total: "projects",
             completed: "completed",
