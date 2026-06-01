@@ -1,6 +1,6 @@
 import { works } from "../data/works";
 import { useUI } from "../i18n/ui";
-import { BilancoAccordion } from "../components/home/BilancoAccordion";
+import { BilancoTimeline } from "../components/home/BilancoTimeline";
 import SuSiralar from "../components/home/SuSiralar";
 import CommitHeatmap from "../components/home/CommitHeatmap";
 import Collapsible from "../components/home/Collapsible";
@@ -26,7 +26,7 @@ export default function Home() {
 
                     {/* Bilanço — collapsible on mobile (default closed) */}
                     <Collapsible title="BİLANÇO">
-                        <BilancoAccordion />
+                        <BilancoTimeline />
                     </Collapsible>
 
                     {/* Current Projects */}
