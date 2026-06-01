@@ -37,7 +37,7 @@ export function BilancoTimeline() {
             {/* selected year — description + playlist (one iframe at a time) */}
             {selected && (
                 <div className="space-y-4">
-                    <p className="text-f-sm tracking-[0.03em] leading-relaxed text-c-muted">
+                    <p className="text-f-sm leading-relaxed text-c-muted font-serif italic">
                         {selected.description}
                     </p>
                     <iframe

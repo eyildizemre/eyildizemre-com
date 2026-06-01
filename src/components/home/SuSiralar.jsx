@@ -3,7 +3,7 @@ import now from "../../data/now.json"
 export default function SuSiralar() {
     return (
         <div className="space-y-4">
-            <p className="text-f-sm tracking-[0.03em] leading-relaxed text-c-muted">
+            <p className="text-f-sm leading-relaxed text-c-muted font-serif italic">
                 {now.description}
             </p>
             <iframe
