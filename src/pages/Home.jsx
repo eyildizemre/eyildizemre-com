@@ -74,7 +74,7 @@ export default function Home() {
 
             {/* Stats */}
             <section className="px-8 sm:px-16 py-14 border-t border-c-border">
-                <div className="flex gap-14 sm:gap-20">
+                <div className="flex flex-wrap gap-8 sm:gap-20">
                     <div>
                         <p className="text-[40px] sm:text-[48px] leading-none tracking-[-0.02em] text-c-neon tabular-nums">
                             {total}
