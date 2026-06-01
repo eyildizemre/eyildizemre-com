@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { works } from "../data/works";
 import { useUI } from "../i18n/ui";
 import { BilancoTimeline } from "../components/home/BilancoTimeline";
@@ -34,14 +35,17 @@ export default function Home() {
                         <p className="text-f-xs tracking-[0.14em] text-c-muted mb-6 uppercase">{ui.home.currentProjects}</p>
                         <div className="divide-y divide-c-border border-t border-c-border">
                             {current.map((work) => (
-                                <div key={work.slug} className="flex items-start justify-between gap-4 py-4">
-                                    <div>
-                                        <p className="text-f-base tracking-[0.04em] text-c-text">{work.title}</p>
+                                <div key={work.slug} className="group flex items-start justify-between gap-4 py-4">
+                                    <Link
+                                        to={work.type === "github" ? `/code/${work.slug}` : `/works/${work.slug}`}
+                                        className="min-w-0"
+                                    >
+                                        <p className="text-f-base tracking-[0.04em] text-c-text group-hover:text-c-neon transition-colors duration-[220ms]">{work.title}</p>
                                         <p className="text-f-xs tracking-[0.02em] text-c-muted mt-1 leading-relaxed">{work.description}</p>
                                         <p className="text-f-2xs tracking-[0.06em] text-c-muted mt-2">
                                             {work.tags.join(" · ")}
                                         </p>
-                                    </div>
+                                    </Link>
                                     <a
                                         href={work.links.github}
                                         target="_blank"
