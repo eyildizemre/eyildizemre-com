@@ -15,7 +15,7 @@ export const works = [
   {
     slug: "eyildizemre-com",
     title: "eyildizemre.com",
-    description: "Personal site. Built as a graduating project for EPL2030 Client Side Programming.",
+    description: "Personal site. Designed to be a hub for all my work, not just software. Built with React, Vite, and Tailwind CSS.",
     type: "github",
     status: "active",
     current: true,
