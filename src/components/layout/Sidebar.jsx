@@ -6,7 +6,7 @@ import sidebarItems from "../../data/sidebarItems.json";
 
 export function Sidebar({ isSidebarOpen, onClose }) {
     const [expanded, setExpanded] = useState(null);
-    const { lang, setLang, fontSize, setFontSize } = usePreferences();
+    const { lang, setLang, fontSize, setFontSize, theme, setTheme } = usePreferences();
     const ui = useUI();
 
     useEffect(() => {
@@ -80,6 +80,13 @@ export function Sidebar({ isSidebarOpen, onClose }) {
             </nav>
 
             <div className="flex items-center justify-center gap-3 py-5 border-t border-c-border">
+                <button
+                    onClick={() => setTheme(theme === "dark" ? "sepia" : "dark")}
+                    className="sm:hidden text-f-xs tracking-[0.08em] px-2 py-1 rounded border border-c-border text-c-muted hover:text-c-neon hover:border-c-neon transition-colors duration-[200ms]"
+                >
+                    {theme === "dark" ? ui.theme.toSepia : ui.theme.toDark}
+                </button>
+
                 <button
                     onClick={() => setLang(lang === "tr" ? "en" : "tr")}
                     className="text-f-xs tracking-[0.12em] uppercase px-2 py-1 rounded border border-c-border text-c-muted hover:text-c-neon hover:border-c-neon transition-colors duration-[200ms]"
