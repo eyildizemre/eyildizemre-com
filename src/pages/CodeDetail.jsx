@@ -17,8 +17,7 @@ export default function CodeDetail() {
                 const res = await fetch(`https://raw.githubusercontent.com/${OWNER}/${slug}/HEAD/README.md`);
                 if (!res.ok) throw new Error(`GitHub related error. Status: ${res.status}`);
                 setReadme(await res.text());
-            } catch (err) {
-                console.log(`Something is wrong. ${err}`);
+            } catch {
                 setReadme(ui.codedetail.placeholder);
             }
         }
