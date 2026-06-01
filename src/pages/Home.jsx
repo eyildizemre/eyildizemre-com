@@ -62,7 +62,7 @@ export default function Home() {
             {/* Hero */}
             <section className="px-8 sm:px-16 pt-24 pb-20 border-t border-c-border">
                 <p className="text-f-xs tracking-[0.2em] text-c-muted mb-5">
-                    SOFTWARE ENGINEER
+                    CS STUDENT · BUILDER
                 </p>
                 <h1 className="text-[52px] sm:text-[72px] leading-none tracking-[-0.02em] text-c-text font-serif">
                     Emre Yıldız
