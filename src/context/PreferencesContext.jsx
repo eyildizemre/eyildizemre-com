@@ -10,7 +10,7 @@ function getDefaultLang() {
 };
 
 export function PreferencesProvider({ children }) {
-    const [theme, setTheme] = useLocalStorage("theme", "dark");
+    const [theme, setTheme] = useLocalStorage("theme", "sepia");
     const [lang, setLang] = useLocalStorage("lang", getDefaultLang());
     const [fontSize, setFontSize] = useLocalStorage("font-size", "md");
 
