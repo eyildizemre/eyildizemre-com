@@ -36,6 +36,10 @@ export const UI = {
         codedetail: {
             placeholder: "GitHub'dan veri çekilemiyor. Doğrudan GitHub'da görüntüleyebilirsiniz.",
         },
+        notFound: {
+            message: "Buralar hâlen dutluk anlaşılan...\nEn iyisi geri dön.",
+            home: "← ana sayfa",
+        },
         about: {
             contact: {
                 heading: "İletişim",
@@ -84,6 +88,10 @@ export const UI = {
         },
         codedetail: {
             placeholder: "Can't fetch data from GitHub. You can view it in GitHub.",
+        },
+        notFound: {
+            message: "Looks like nothing's been built here yet...\nBest to head back.",
+            home: "← home",
         },
         about: {
             contact: {
