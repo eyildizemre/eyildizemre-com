@@ -2,7 +2,7 @@
 // It works on the server-side (Workers runtime); token does not pass to browser
 // To test it locally: `npx wrangler pages dev` — npm run dev (Vite) won't work for this.
 
-import { works } from "../../src/data/works.js";
+import { works } from "../../src/data/works";
 
 const OWNER = "eyildizemre";
 

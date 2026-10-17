@@ -1,4 +1,6 @@
-export const works = [
+import type { Work } from "../types";
+
+export const works: Work[] = [
     {
     slug: "migr",
     title: "migr",
