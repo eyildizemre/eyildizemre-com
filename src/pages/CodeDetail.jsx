@@ -11,6 +11,7 @@ const OWNER = "eyildizemre";
 export default function CodeDetail() {
     const { slug } = useParams();
     const [readme, setReadme] = useState(null);
+    const [failed, setFailed] = useState(false);
     const ui = useUI();
 
     // Same allowlist as the Code page: only repos listed in works.js have a detail page
@@ -24,8 +25,9 @@ export default function CodeDetail() {
                 const res = await fetch(`https://raw.githubusercontent.com/${OWNER}/${slug}/HEAD/README.md`);
                 if (!res.ok) throw new Error(`GitHub related error. Status: ${res.status}`);
                 setReadme(await res.text());
+                setFailed(false);
             } catch {
-                setReadme(ui.codedetail.placeholder);
+                setFailed(true);
             }
         }
         fetchData();
@@ -58,7 +60,7 @@ export default function CodeDetail() {
                     </div>
                     <div className="px-6 py-7 sm:px-8">
                         <Suspense fallback={<p className="text-c-muted">...</p>}>
-                            <Markdown>{readme ?? ""}</Markdown>
+                            <Markdown>{failed ? ui.codedetail.placeholder : readme ?? ""}</Markdown>
                         </Suspense>
                     </div>
                 </div>
