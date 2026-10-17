@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { usePreferences } from "../../context/PreferencesContext";
 import { useUI } from "../../i18n/ui";
+import type { Contributions } from "../../types";
 
 // Each theme sets its own opacity ramp in index.css (--heat-0…3)
 const SHADES = [
@@ -12,11 +13,11 @@ const SHADES = [
 ];
 
 export default function CommitHeatmap() {
-    const [weeks, setWeeks]     = useState([]);
+    const [weeks, setWeeks]     = useState<Contributions["weeks"]>([]);
     const [total, setTotal]     = useState(0);
     const [loading, setLoading] = useState(true);
-    const [error, setError]     = useState(null);
-    const scrollRef = useRef(null);
+    const [error, setError]     = useState<string | null>(null);
+    const scrollRef = useRef<HTMLDivElement>(null);
     const { lang } = usePreferences();
     const ui = useUI();
 
@@ -25,12 +26,12 @@ export default function CommitHeatmap() {
             try {
                 const res = await fetch("/api/contributions");
                 if (!res.ok) throw new Error(`HTTP error. status: ${res.status}`);
-                const { total, weeks } = await res.json();
+                const { total, weeks }: Contributions = await res.json();
                 setWeeks(weeks);
                 setTotal(total);
                 setLoading(false);
             } catch (err) {
-                setError(err.message);
+                setError(err instanceof Error ? err.message : String(err));
             }
         }
         fetchData();
@@ -54,9 +55,9 @@ export default function CommitHeatmap() {
     }
 
     const locale = lang === "tr" ? "tr-TR" : "en-US";
-    const dateOptions = { day: "numeric", month: "long" };
+    const dateOptions: Intl.DateTimeFormatOptions = { day: "numeric", month: "long" };
 
-    function tooltip(count, date) {
+    function tooltip(count: number, date: string) {
         const formatted = new Date(date).toLocaleDateString(locale, dateOptions);
         return count === 0
             ? ui.heatmap.tooltipNone(formatted)
@@ -66,7 +67,7 @@ export default function CommitHeatmap() {
     // Shades are relative to the busiest day of the year, not fixed counts
     const maxCount = Math.max(0, ...weeks.flatMap((week) => week.contributionDays.map((day) => day.contributionCount)));
 
-    function dotOpacity(count) {
+    function dotOpacity(count: number) {
         if (count === 0) return SHADES[0];
         const ratio = count / maxCount;
         if (ratio <= 0.25) return SHADES[1];
@@ -75,7 +76,7 @@ export default function CommitHeatmap() {
         return SHADES[4];
     }
 
-    function monthLabel(wi) {
+    function monthLabel(wi: number) {
         // A label in the last column has no room and overflows the grid,
         // which adds a horizontal scrollbar even on wide screens.
         if (wi === 0 || wi === weeks.length - 1) return "";

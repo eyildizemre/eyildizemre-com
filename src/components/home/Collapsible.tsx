@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, type ReactNode } from "react";
 
 // Section that collapses on mobile (closed by default so it doesn't push the rest of
 // the page down), and is always expanded on md+ where it sits as a grid column.
-export default function Collapsible({ title, children }) {
+export default function Collapsible({ title, children }: { title: string; children: ReactNode }) {
     const [open, setOpen] = useState(false);
 
     const titleClass = "text-f-xs tracking-[0.14em] text-c-muted";

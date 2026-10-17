@@ -1,29 +1,34 @@
 import { useState, useEffect } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, type NavLinkRenderProps } from "react-router-dom";
 import { usePreferences } from "../../context/PreferencesContext";
 import { useUI } from "../../i18n/ui";
 import sidebarItems from "../../data/sidebarItems.json";
 
-export function Sidebar({ isSidebarOpen, onClose }) {
-    const [expanded, setExpanded] = useState(null);
+interface SidebarProps {
+    isSidebarOpen: boolean;
+    onClose: () => void;
+}
+
+export function Sidebar({ isSidebarOpen, onClose }: SidebarProps) {
+    const [expanded, setExpanded] = useState<string | null>(null);
     const { lang, setLang, fontSize, setFontSize, theme, setTheme } = usePreferences();
     const ui = useUI();
 
     useEffect(() => {
         if (!isSidebarOpen) return;
-        const handleKeyDown = (e) => { if (e.key === "Escape") onClose(); };
+        const handleKeyDown = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
         document.addEventListener("keydown", handleKeyDown);
         return () => document.removeEventListener("keydown", handleKeyDown);
     }, [isSidebarOpen, onClose]);
 
-    const mobileNavClass = ({ isActive }) =>
+    const mobileNavClass = ({ isActive }: NavLinkRenderProps) =>
         `block px-7 py-[9px] text-f-sm tracking-[0.1em] uppercase border-l-2 transition-colors duration-[220ms] ${
             isActive
                 ? "text-c-neon border-c-neon"
                 : "text-c-muted border-transparent hover:text-c-neon"
         }`;
 
-    const pageNavClass = (props) => `${mobileNavClass(props)} md:hidden`;
+    const pageNavClass = (props: NavLinkRenderProps) => `${mobileNavClass(props)} md:hidden`;
 
     return (
         <aside

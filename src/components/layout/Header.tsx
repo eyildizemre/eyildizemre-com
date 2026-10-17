@@ -1,4 +1,4 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, type NavLinkRenderProps } from "react-router-dom";
 import { usePreferences } from "../../context/PreferencesContext";
 import { useUI } from "../../i18n/ui";
 
@@ -12,11 +12,16 @@ function PanelIcon() {
     );
 }
 
-export function Header({ onToggleSidebar, isSidebarOpen }) {
+interface HeaderProps {
+    onToggleSidebar: () => void;
+    isSidebarOpen: boolean;
+}
+
+export function Header({ onToggleSidebar, isSidebarOpen }: HeaderProps) {
     const { theme, setTheme } = usePreferences();
     const ui = useUI();
 
-    const navLinkClass = ({ isActive }) =>
+    const navLinkClass = ({ isActive }: NavLinkRenderProps) =>
         `text-f-base tracking-[0.12em] uppercase transition-colors duration-[220ms] pb-1 border-b ${
             isActive
                 ? "text-c-neon border-c-neon"

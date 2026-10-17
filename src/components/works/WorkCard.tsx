@@ -1,7 +1,19 @@
 import { Link } from "react-router-dom";
 import { useUI } from "../../i18n/ui";
+import type { Work } from "../../types";
 
-export function WorkCard({ title, description, tags, type, year, githubUrl, liveUrl, to }) {
+interface WorkCardProps {
+    title: string;
+    description: string;
+    tags: string[];
+    type: Work["type"];
+    year: number;
+    githubUrl?: string;
+    liveUrl?: string;
+    to: string;
+}
+
+export function WorkCard({ title, description, tags, type, year, githubUrl, liveUrl, to }: WorkCardProps) {
     const ui = useUI();
 
     return (

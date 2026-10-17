@@ -1,15 +1,18 @@
-import { useState } from "react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import { useUI } from "../../i18n/ui";
+
+type Field = "name" | "email" | "message";
+type Errors = Partial<Record<Field, string>>;
 
 export default function ContactForm() {
     const ui = useUI();
     const t = ui.about.contact;
 
     const [form, setForm] = useState({ name: "", email: "", message: "" });
-    const [errors, setErrors] = useState({});
+    const [errors, setErrors] = useState<Errors>({});
     const [sent, setSent] = useState(false);
 
-    function handleChange(e) {
+    function handleChange(e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) {
         setForm({ ...form, [e.target.name]: e.target.value });
         setSent(false);
     }
@@ -17,7 +20,7 @@ export default function ContactForm() {
     // Mock form: validates only, never actually sends (see "Demo" badge).
     // CSP requirement = form validation. Re-author these rules to make them yours.
     function validate() {
-        const next = {};
+        const next: Errors = {};
         if (!form.name.trim()) next.name = t.required;
         if (!form.email.trim()) next.email = t.required;
         else if (!/\S+@\S+\.\S+/.test(form.email)) next.email = t.invalidEmail;
@@ -25,7 +28,7 @@ export default function ContactForm() {
         return next;
     }
 
-    function handleSubmit(e) {
+    function handleSubmit(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
         const next = validate();
         setErrors(next);

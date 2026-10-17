@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { usePreferences } from "../../context/PreferencesContext";
 import { useUI } from "../../i18n/ui";
+import type { Repo } from "../../types";
 
 // GitHub octicons (star, repo-forked) — small, inherit text color
 function StarIcon() {
@@ -25,7 +26,10 @@ function ForkIcon() {
     );
 }
 
-export function CodeCard({ slug, description, language, stars, forks, pushedAt, htmlUrl }) {
+// A live card gets the whole Repo; the works.js fallback has only slug, description and URL
+export type CodeCardProps = Pick<Repo, "slug"> & Partial<Omit<Repo, "slug">>;
+
+export function CodeCard({ slug, description, language, stars, forks, pushedAt, htmlUrl }: CodeCardProps) {
     const ui = useUI();
     const { lang } = usePreferences();
 

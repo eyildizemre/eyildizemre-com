@@ -1,9 +1,10 @@
 import { useState, useEffect, useMemo } from "react";
 import { works } from "../data/works";
 import { useUI } from "../i18n/ui";
-import { CodeCard } from "../components/code/CodeCard";
+import { CodeCard, type CodeCardProps } from "../components/code/CodeCard";
+import type { Repo } from "../types";
 
-const staticRepos = works.filter((w) => w.type === "github").map((w) => ({
+const staticRepos: CodeCardProps[] = works.filter((w) => w.type === "github").map((w) => ({
     slug: w.slug,
     description: w.description.en, // stands in for GitHub's About text, which is English-only
     htmlUrl: w.links.github,
@@ -11,16 +12,17 @@ const staticRepos = works.filter((w) => w.type === "github").map((w) => ({
 
 export default function Code() {
     const ui = useUI();
-    const [repos, setRepos] = useState(staticRepos);
+    const [repos, setRepos] = useState<CodeCardProps[]>(staticRepos);
     const [isFallback, setIsFallback] = useState(false);
-    const [activeLang, setActiveLang] = useState(null);
+    const [activeLang, setActiveLang] = useState<string | null>(null);
 
     useEffect(() => {
         async function fetchData() {
             try {
                 const res = await fetch("/api/repos");
                 if (!res.ok) throw new Error(`HTTP error. status: ${res.status}`);
-                else setRepos(await res.json());
+                const data: Repo[] = await res.json();
+                setRepos(data);
             } catch {
                 setRepos(staticRepos);
                 setIsFallback(true);
@@ -31,7 +33,7 @@ export default function Code() {
 
     // unique languages in the repo set (memoized — recompute only when repos change)
     const languages = useMemo(
-        () => [...new Set(repos.map((r) => r.language).filter(Boolean))],
+        () => [...new Set(repos.map((r) => r.language).filter((l): l is string => Boolean(l)))],
         [repos]
     );
 
@@ -41,7 +43,7 @@ export default function Code() {
         [repos, activeLang]
     );
 
-    const chip = (active) =>
+    const chip = (active: boolean) =>
         `text-f-xs tracking-[0.08em] px-3 py-1 rounded-full border transition-colors duration-[200ms] ${
             active
                 ? "text-c-neon border-c-neon"

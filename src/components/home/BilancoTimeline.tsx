@@ -4,7 +4,7 @@ import bilanco from "../../data/bilanco.json";
 export function BilancoTimeline() {
     const latestYear = Math.max(...bilanco.map((item) => item.year));
     const [selectedYear, setSelectedYear] = useState(latestYear);
-    const stripRef = useRef(null);
+    const stripRef = useRef<HTMLDivElement>(null);
 
     // scroll the year strip to the most recent year on mount (like the commit heatmap)
     useLayoutEffect(() => {

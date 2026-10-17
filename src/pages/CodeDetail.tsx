@@ -10,7 +10,7 @@ const OWNER = "eyildizemre";
 
 export default function CodeDetail() {
     const { slug } = useParams();
-    const [readme, setReadme] = useState(null);
+    const [readme, setReadme] = useState<string | null>(null);
     const [failed, setFailed] = useState(false);
     const ui = useUI();
 
