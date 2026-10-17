@@ -1,6 +1,8 @@
 import { useState, useEffect, lazy, Suspense } from "react";
 import { useParams } from "react-router-dom";
 import { useUI } from "../i18n/ui";
+import { works } from "../data/works";
+import NotFound from "./NotFound";
 
 const Markdown = lazy(() => import("../components/ui/Markdown"));
 
@@ -11,7 +13,12 @@ export default function CodeDetail() {
     const [readme, setReadme] = useState(null);
     const ui = useUI();
 
+    // Same allowlist as the Code page: only repos listed in works.js have a detail page
+    const isListed = works.some((work) => work.type === "github" && work.slug === slug);
+
     useEffect(() => {
+        if (!isListed) return;
+
         async function fetchData() {
             try {
                 const res = await fetch(`https://raw.githubusercontent.com/${OWNER}/${slug}/HEAD/README.md`);
@@ -22,7 +29,9 @@ export default function CodeDetail() {
             }
         }
         fetchData();
-    }, [slug]);
+    }, [slug, isListed]);
+
+    if (!isListed) return <NotFound />;
 
     return (
         <section className="px-8 sm:px-16 pt-16 pb-20">
