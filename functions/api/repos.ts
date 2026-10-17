@@ -3,10 +3,25 @@
 // To test it locally: `npx wrangler pages dev` — npm run dev (Vite) won't work for this.
 
 import { works } from "../../src/data/works";
+import type { Repo } from "../../src/types";
+
+interface Env {
+    GITHUB_TOKEN: string;
+}
+
+// Only the fields this function reads from GitHub's repo response
+interface GitHubRepo {
+    description: string | null;
+    language: string | null;
+    stargazers_count: number;
+    forks_count: number;
+    pushed_at: string;
+    html_url: string;
+}
 
 const OWNER = "eyildizemre";
 
-export async function onRequestGet(context) {
+export const onRequestGet: PagesFunction<Env> = async (context) => {
     const token = context.env.GITHUB_TOKEN;
 
     // Allowlist: only fetch the ones there are in works.js
@@ -16,10 +31,10 @@ export async function onRequestGet(context) {
     // their results into one array — a sequential for-await loop would work too, just slower.
     // One failed repo fails the whole response: the client then falls back to works.js
     // for every card instead of rendering some of them with empty fields.
-    let repos;
+    let repos: Repo[];
     try {
         repos = await Promise.all(
-            slugs.map(async (slug) => {
+            slugs.map(async (slug): Promise<Repo> => {
                 const res = await fetch(`https://api.github.com/repos/${OWNER}/${slug}`, {
                     method: "GET",
                     headers: {
@@ -30,7 +45,7 @@ export async function onRequestGet(context) {
                 });
                 if (!res.ok) throw new Error(`GitHub responded ${res.status} for ${slug}`);
 
-                const json = await res.json();
+                const json = await res.json<GitHubRepo>();
 
                 return {
                     slug,
@@ -59,4 +74,4 @@ export async function onRequestGet(context) {
             "Cache-Control": "public, max-age=3600",
         },
     })
-}
+};

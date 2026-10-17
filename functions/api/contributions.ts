@@ -1,6 +1,26 @@
+import type { Contributions } from "../../src/types";
+
+interface Env {
+    GITHUB_TOKEN: string;
+}
+
+// Only the part of GitHub's GraphQL response this function reads
+interface GraphQLResponse {
+    data?: {
+        user?: {
+            contributionsCollection: {
+                contributionCalendar: {
+                    totalContributions: number;
+                    weeks: Contributions["weeks"];
+                };
+            };
+        } | null;
+    };
+}
+
 const OWNER = "eyildizemre";
 
-export async function onRequestGet(context) {
+export const onRequestGet: PagesFunction<Env> = async (context) => {
     const token = context.env.GITHUB_TOKEN;
 
     const res = await fetch("https://api.github.com/graphql", {
@@ -34,7 +54,7 @@ export async function onRequestGet(context) {
 
     // GitHub fails either with a non-2xx status (e.g. an expired token) or with a 200
     // whose body carries `errors` instead of `data`; both leave `calendar` undefined.
-    const json = res.ok ? await res.json() : null;
+    const json = res.ok ? await res.json<GraphQLResponse>() : null;
     const calendar = json?.data?.user?.contributionsCollection.contributionCalendar;
 
     if (!calendar) {
@@ -44,8 +64,10 @@ export async function onRequestGet(context) {
         });
     }
 
+    const body: Contributions = { total: calendar.totalContributions, weeks: calendar.weeks };
+
     return new Response(
-        JSON.stringify({ total: calendar.totalContributions, weeks: calendar.weeks }),
+        JSON.stringify(body),
         {
             headers: {
                 "Content-Type": "application/json",
@@ -53,4 +75,4 @@ export async function onRequestGet(context) {
             },
         },
     );
-}
+};
