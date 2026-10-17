@@ -54,11 +54,15 @@ export default function CommitHeatmap() {
             : ui.heatmap.tooltipSome(formatted, count);
     }
 
+    // Shades are relative to the busiest day of the year, not fixed counts
+    const maxCount = Math.max(0, ...weeks.flatMap((week) => week.contributionDays.map((day) => day.contributionCount)));
+
     function dotOpacity(count) {
-        if (count === 0)  return "opacity-10";
-        if (count <= 2)   return "opacity-30";
-        if (count <= 5)   return "opacity-60";
-        if (count <= 9)   return "opacity-80";
+        if (count === 0) return "opacity-10";
+        const ratio = count / maxCount;
+        if (ratio <= 0.25) return "opacity-30";
+        if (ratio <= 0.5)  return "opacity-60";
+        if (ratio <= 0.75) return "opacity-80";
         return "opacity-100";
     }
 
