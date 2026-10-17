@@ -16,7 +16,7 @@ If I were to give a longer answer, though...
 
 I'm a passionate CS undergraduate, yes, but there's more to me than CS. I'm passionately devoted to art — not just someone who consumes it, but someone who creates, too. Even though I haven't had much luck with publishers so far, I've written stories, novellas, novels, and a great many poems that could be considered serious work.
 
-I built this site as my first real experience with React and Hetzner, and as my personal hub. That's why the Home page greets you with Spotify playlists: as someone who could honestly say he breathes music, I think those playlists are a good way into who I am.
+I built this site to be my first real experience with React and with servers. (Even though I still haven't found the chance to integrate the server...) It's also meant to be my personal hub. That's why the Home page greets you with Spotify playlists: as someone who could honestly say he breathes music, I think those playlists are a good way in for getting a sense of what kind of person I am.
 
 You've probably gathered why WORKS and CODE are separate pages — but in case you're reading this before I've added any non-software projects, and the two look the same, let me explain.
 

@@ -16,7 +16,7 @@ Uzun uzun anlatacak olursam eğer...
 
 Tutkulu bir CS öğrencisiyim, ama sadece CS'ten ibaret değilim. Sanata tutkuyla bağlıyım ve sadece tüketen değil, üreten de birisiyim. Şimdiye dek yayınevleriyle şansım pek yaver gitmemiş olsa da, ciddi denebilecek öykü, novella, roman ve çok sayıda şiir yazdığım söylenebilir.
 
-Bu site benim hem React ve Hetzner ile ilk gerçek deneyimim olması için yapıldı, hem de kişisel merkezim olması için. Ana sayfada sizi Spotify çalma listelerinin karşılama sebebi bu. İşi müzik soluduğunu söylemeye kadar götürebilecek birisi olarak, o listelerin benim kim olduğumu görebilmek için iyi bir giriş noktası olduğunu düşünüyorum.
+Bu siteyi hem React hem de sunucularla ilk gerçek deneyimim olması için yaptım. (Her ne kadar sunucuyu entegre etmeye hâlen fırsat bulamamış olsam da...) Sitenin bir diğer varlık sebebi de kişisel merkezim olarak konumlandırılması. Ana sayfada sizi Spotify çalma listelerinin karşılama sebebi bu. İşi müzik soluduğunu söylemeye kadar götürebilecek birisi olarak, o listelerin nasıl birisi olduğuma dair bir fikir edinebilmek için iyi bir giriş noktası olduğunu düşünüyorum.
 
 PROJELER ve KOD sayfasının ayrılmasını sayfalar içerisinde anlamış olmalısınız ama olur da burayı okuduğunuzda hâlen yazılım dışı proje eklemediysem ve iki sayfada da aynı şeyleri görüyorsanız, niye iki ayrı sayfa olduğunu açıklayayım.
 
