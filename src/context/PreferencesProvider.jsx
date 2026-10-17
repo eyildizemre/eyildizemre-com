@@ -1,7 +1,6 @@
-import { createContext, useContext, useEffect} from "react";
+import { useEffect } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
-
-const PreferencesContext = createContext();
+import { PreferencesContext } from "./PreferencesContext";
 
 function getDefaultLang() {
     if (!navigator.language.startsWith("tr"))
@@ -33,10 +32,4 @@ export function PreferencesProvider({ children }) {
             {children}
         </PreferencesContext.Provider>
     );
-}
-
-export function usePreferences() {
-    const context = useContext(PreferencesContext);
-    if (!context) throw new Error ("usePreferences must be used within PreferencesProvider");
-    return context;
 }
