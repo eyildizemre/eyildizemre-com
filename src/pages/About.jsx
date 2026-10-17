@@ -2,7 +2,6 @@ import { lazy, Suspense } from "react";
 import { usePreferences } from "../context/PreferencesContext";
 import aboutTR from "../content/tr/hakkımda.md?raw";
 import aboutEN from "../content/en/about.md?raw";
-import ContactForm from "../components/about/ContactForm";
 
 const Markdown = lazy(() => import("../components/ui/Markdown"));
 
@@ -26,8 +25,6 @@ export default function About() {
                         </Suspense>
                     </div>
                 </div>
-
-                <ContactForm />
             </div>
         </section>
     );
