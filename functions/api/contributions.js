@@ -32,8 +32,17 @@ export async function onRequestGet(context) {
         }),
     });
 
-    const json = await res.json();
-    const calendar = json.data.user.contributionsCollection.contributionCalendar;
+    // GitHub fails either with a non-2xx status (e.g. an expired token) or with a 200
+    // whose body carries `errors` instead of `data`; both leave `calendar` undefined.
+    const json = res.ok ? await res.json() : null;
+    const calendar = json?.data?.user?.contributionsCollection.contributionCalendar;
+
+    if (!calendar) {
+        return new Response(JSON.stringify({ error: "GitHub request failed" }), {
+            status: 502,
+            headers: { "Content-Type": "application/json" },
+        });
+    }
 
     return new Response(
         JSON.stringify({ total: calendar.totalContributions, weeks: calendar.weeks }),
