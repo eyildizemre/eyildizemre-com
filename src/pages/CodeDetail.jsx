@@ -20,17 +20,25 @@ export default function CodeDetail() {
     useEffect(() => {
         if (!isListed) return;
 
+        // Set by the cleanup when the slug changes, so a late response for the
+        // previous repo can't overwrite the current one.
+        let ignore = false;
+
         async function fetchData() {
             try {
                 const res = await fetch(`https://raw.githubusercontent.com/${OWNER}/${slug}/HEAD/README.md`);
                 if (!res.ok) throw new Error(`GitHub related error. Status: ${res.status}`);
-                setReadme(await res.text());
+                const text = await res.text();
+                if (ignore) return;
+                setReadme(text);
                 setFailed(false);
             } catch {
-                setFailed(true);
+                if (!ignore) setFailed(true);
             }
         }
         fetchData();
+
+        return () => { ignore = true; };
     }, [slug, isListed]);
 
     if (!isListed) return <NotFound />;
