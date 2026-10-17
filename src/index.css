@@ -23,6 +23,11 @@
   --color-text-muted: #87858f;
   --color-neon: #f5c518;
   --color-overlay: rgba(0, 0, 0, 0.6);
+  /* heatmap shades (neon opacity), from an empty day up to near the busiest one */
+  --heat-0: 0.1;
+  --heat-1: 0.3;
+  --heat-2: 0.6;
+  --heat-3: 0.8;
 }
 
 [data-theme="sepia"] {
@@ -34,6 +39,11 @@
   --color-text-muted: #6b5a3e;
   --color-neon: #c8853a;
   --color-overlay: rgba(42, 31, 14, 0.35);
+  /* low opacities blend into the light background, so this ramp starts higher */
+  --heat-0: 0.1;
+  --heat-1: 0.45;
+  --heat-2: 0.65;
+  --heat-3: 0.85;
 }
 
 /* === Global Reset === */

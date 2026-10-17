@@ -2,6 +2,15 @@ import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import { usePreferences } from "../../context/PreferencesContext";
 import { useUI } from "../../i18n/ui";
 
+// Each theme sets its own opacity ramp in index.css (--heat-0…3)
+const SHADES = [
+    "opacity-[var(--heat-0)]",
+    "opacity-[var(--heat-1)]",
+    "opacity-[var(--heat-2)]",
+    "opacity-[var(--heat-3)]",
+    "opacity-100",
+];
+
 export default function CommitHeatmap() {
     const [weeks, setWeeks]     = useState([]);
     const [total, setTotal]     = useState(0);
@@ -58,12 +67,12 @@ export default function CommitHeatmap() {
     const maxCount = Math.max(0, ...weeks.flatMap((week) => week.contributionDays.map((day) => day.contributionCount)));
 
     function dotOpacity(count) {
-        if (count === 0) return "opacity-10";
+        if (count === 0) return SHADES[0];
         const ratio = count / maxCount;
-        if (ratio <= 0.25) return "opacity-30";
-        if (ratio <= 0.5)  return "opacity-60";
-        if (ratio <= 0.75) return "opacity-80";
-        return "opacity-100";
+        if (ratio <= 0.25) return SHADES[1];
+        if (ratio <= 0.5)  return SHADES[2];
+        if (ratio <= 0.75) return SHADES[3];
+        return SHADES[4];
     }
 
     function monthLabel(wi) {
@@ -136,8 +145,8 @@ export default function CommitHeatmap() {
             </div>
                 <div className="flex items-center justify-end gap-[6px] mt-3">
                     <span className="text-[8px] lg:text-[10px] xl:text-[11px] text-c-muted">{ui.heatmap.less}</span>
-                    {[0.1, 0.3, 0.6, 0.8, 1].map((op) => (
-                        <div key={op} className="w-[var(--cell)] h-[var(--cell)] rounded-sm bg-c-neon" style={{ opacity: op }} />
+                    {SHADES.map((shade) => (
+                        <div key={shade} className={`w-[var(--cell)] h-[var(--cell)] rounded-sm bg-c-neon ${shade}`} />
                     ))}
                     <span className="text-[8px] lg:text-[10px] xl:text-[11px] text-c-muted">{ui.heatmap.more}</span>
                 </div>
