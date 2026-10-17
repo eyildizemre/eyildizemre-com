@@ -15,6 +15,7 @@ export default function CommitHeatmap() {
         async function fetchData() {
             try {
                 const res = await fetch("/api/contributions");
+                if (!res.ok) throw new Error(`HTTP error. status: ${res.status}`);
                 const { total, weeks } = await res.json();
                 setWeeks(weeks);
                 setTotal(total);
@@ -32,7 +33,16 @@ export default function CommitHeatmap() {
         }
     }, [weeks]); // scroll to end when weeks data changes
 
-    if (error) return null;
+    if (error) {
+        return (
+            <section className="px-8 sm:px-16 py-14 border-t border-c-border">
+                <p className="text-f-xs tracking-[0.14em] text-c-muted mb-6">{ui.heatmap.title}</p>
+                <p className="w-fit text-f-xs tracking-[0.04em] leading-relaxed text-c-muted border-l-2 border-c-neon bg-c-bg-secondary rounded-r px-4 py-3">
+                    {ui.heatmap.fallback}
+                </p>
+            </section>
+        );
+    }
 
     const locale = lang === "tr" ? "tr-TR" : "en-US";
     const dateOptions = { day: "numeric", month: "long" };

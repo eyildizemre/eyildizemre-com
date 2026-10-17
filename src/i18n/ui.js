@@ -19,6 +19,7 @@ export const UI = {
             total: (n) => `Son bir yılda ${n} katkı`,
             tooltipNone: (date) => `${date} tarihinde katkı yok`,
             tooltipSome: (date, n) => `${date} tarihinde ${n} katkı`,
+            fallback: "Heatmap'i getirmeye çalışıyoruz ama gelmiyor...",
         },
         aria: {
             sidebar: "Kenar menüsü",
@@ -67,6 +68,7 @@ export const UI = {
             total: (n) => `${n} contributions in the last year`,
             tooltipNone: (date) => `No contributions on ${date}`,
             tooltipSome: (date, n) => `${n} contribution${n !== 1 ? "s" : ""} on ${date}`,
+            fallback: "We're trying to fetch the heatmap, but it won't come...",
         },
         aria: {
             sidebar: "Sidebar",
