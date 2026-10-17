@@ -63,7 +63,9 @@ export default function CommitHeatmap() {
     }
 
     function monthLabel(wi) {
-        if (wi === 0) return "";
+        // A label in the last column has no room and overflows the grid,
+        // which adds a horizontal scrollbar even on wide screens.
+        if (wi === 0 || wi === weeks.length - 1) return "";
         const firstDay = weeks[wi]?.contributionDays[0];
         if (!firstDay) return "";
         const curr = new Date(firstDay.date).getMonth();
