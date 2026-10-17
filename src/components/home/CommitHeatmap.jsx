@@ -96,7 +96,7 @@ export default function CommitHeatmap() {
                             <div key={i} className="w-[var(--cell)] h-[var(--cell)]" />
                         ))
                         : weeks.map((_, wi) => (
-                            <div key={wi} className="w-[var(--cell)]">
+                            <div key={wi} className="w-[var(--cell)] shrink-0">
                                 <span className="text-[8px] lg:text-[10px] xl:text-[11px] text-c-muted leading-none whitespace-nowrap">
                                     {monthLabel(wi)}
                                 </span>
