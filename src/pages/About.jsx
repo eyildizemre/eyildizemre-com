@@ -1,6 +1,6 @@
 import { lazy, Suspense } from "react";
 import { usePreferences } from "../context/PreferencesContext";
-import aboutTR from "../content/tr/about.md?raw";
+import aboutTR from "../content/tr/hakkımda.md?raw";
 import aboutEN from "../content/en/about.md?raw";
 import ContactForm from "../components/about/ContactForm";
 
@@ -10,6 +10,7 @@ export default function About() {
     const { lang } = usePreferences();
 
     const content = lang === "tr" ? aboutTR : aboutEN;
+    const fileName = lang === "tr" ? "hakkımda.md" : "about.md";
 
     return (
         <section className="px-8 sm:px-16 pt-16 pb-20">
@@ -17,7 +18,7 @@ export default function About() {
                 {/* labeled frame — same editor file-panel motif as CodeDetail */}
                 <div className="border border-c-border rounded-lg overflow-hidden">
                     <div className="flex items-center border-b border-c-border bg-c-bg-secondary px-5 py-2.5">
-                        <span className="font-mono text-f-2xs tracking-[0.06em] text-c-muted">about.md</span>
+                        <span className="font-mono text-f-2xs tracking-[0.06em] text-c-muted">{fileName}</span>
                     </div>
                     <div className="px-6 py-7 sm:px-8">
                         <Suspense fallback={<p className="text-c-muted">...</p>}>
