@@ -1,7 +1,10 @@
 import { works } from "../data/works";
+import { usePreferences } from "../context/PreferencesContext";
 import { WorkCard } from "../components/works/WorkCard";
 
 export default function Works() {
+    const { lang } = usePreferences();
+
     return (
         <section className="px-8 sm:px-16 pt-16 pb-20">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -9,7 +12,7 @@ export default function Works() {
                     <WorkCard
                         key={work.slug}
                         title={work.title}
-                        description={work.description}
+                        description={work.description[lang]}
                         tags={work.tags}
                         type={work.type}
                         year={work.year}

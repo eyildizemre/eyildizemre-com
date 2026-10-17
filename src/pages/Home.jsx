@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { works } from "../data/works";
 import { useUI } from "../i18n/ui";
+import { usePreferences } from "../context/PreferencesContext";
 import { BilancoTimeline } from "../components/home/BilancoTimeline";
 import SuSiralar from "../components/home/SuSiralar";
 import CommitHeatmap from "../components/home/CommitHeatmap";
@@ -8,6 +9,7 @@ import Collapsible from "../components/home/Collapsible";
 
 export default function Home() {
     const ui = useUI();
+    const { lang } = usePreferences();
 
     const total     = works.length;
     const completed = works.filter(w => w.status === "completed").length;
@@ -41,7 +43,7 @@ export default function Home() {
                                         className="min-w-0"
                                     >
                                         <p className="text-f-base tracking-[0.04em] text-c-text group-hover:text-c-neon transition-colors duration-[220ms]">{work.title}</p>
-                                        <p className="text-f-xs tracking-[0.02em] text-c-muted mt-1 leading-relaxed">{work.description}</p>
+                                        <p className="text-f-xs tracking-[0.02em] text-c-muted mt-1 leading-relaxed">{work.description[lang]}</p>
                                         <p className="text-f-2xs tracking-[0.06em] text-c-muted mt-2">
                                             {work.tags.join(" · ")}
                                         </p>

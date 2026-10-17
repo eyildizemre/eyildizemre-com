@@ -5,7 +5,7 @@ import { CodeCard } from "../components/code/CodeCard";
 
 const staticRepos = works.filter((w) => w.type === "github").map((w) => ({
     slug: w.slug,
-    description: w.description,
+    description: w.description.en, // stands in for GitHub's About text, which is English-only
     htmlUrl: w.links.github,
 }));
 
